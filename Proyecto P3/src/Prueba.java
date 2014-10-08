@@ -2,6 +2,6 @@
 public class Prueba {
 
 	public void Viva(){
-		System.out.println("hola");
+		System.out.println("hola bola");
 	}
 }
