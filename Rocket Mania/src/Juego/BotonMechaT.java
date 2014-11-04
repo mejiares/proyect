@@ -6,14 +6,14 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-public class BotonMechaL extends JButton {
+public class BotonMechaT extends JButton {
 	double miGiro = 0;
 	int alto = 50;
 	int ancho = 50;
 	int i = 0;
 	boolean girar = false;
-	ImageIcon icon = new ImageIcon("Imagenes/L.png");
-	public BotonMechaL(){
+	ImageIcon icon = new ImageIcon("Imagenes/T.png");
+	public BotonMechaT(){
 		
 		setIcon(icon);
 		setOpaque(false);
@@ -28,7 +28,7 @@ public class BotonMechaL extends JButton {
 		miGiro = miGiro + Math.PI/2; 
 		
 		//repaint();
-		System.out.println("Boton L gira:  " + miGiro);
+		System.out.println("Boton T gira:  " + miGiro);
 	}
 	
 	protected void paintComponent(Graphics g) {	
@@ -41,6 +41,6 @@ public class BotonMechaL extends JButton {
         g2.drawRect(0, 0, 50,50);
         i = i +1;
         // System.out.println("Pasa2  " + i);
-               
+              
 	}
 }

@@ -7,6 +7,7 @@ import java.awt.Image;
 import java.awt.RenderingHints;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
 public class MechaBarra extends Mecha {
 	BotonMechaBarra b = new BotonMechaBarra();
@@ -39,7 +40,7 @@ public class MechaBarra extends Mecha {
 		return izquierda;
 	}
 	
-	public Component getBoton(){
+	public JButton getBoton(){
 		return b;
 	}
 	

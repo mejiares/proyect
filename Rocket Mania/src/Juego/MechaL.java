@@ -2,6 +2,8 @@ package Juego;
 
 import java.awt.Component;
 
+import javax.swing.JButton;
+
 public class MechaL extends Mecha {
 	BotonMechaL b = new BotonMechaL();
 	public MechaL(){
@@ -48,7 +50,7 @@ public class MechaL extends Mecha {
 		return izquierda;
 	}
 	
-	public Component getBoton(){
+	public JButton getBoton(){
 		return b;
 	}
 	
@@ -56,5 +58,4 @@ public class MechaL extends Mecha {
 		b.gira();
 		//b.repaint();
 	}
-	
 }

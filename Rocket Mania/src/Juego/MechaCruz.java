@@ -2,6 +2,8 @@ package Juego;
 
 import java.awt.Component;
 
+import javax.swing.JButton;
+
 public class MechaCruz extends Mecha {
 	BotonMechaCruz b = new BotonMechaCruz();
 	public MechaCruz(){
@@ -13,14 +15,13 @@ public class MechaCruz extends Mecha {
 	
 	public void vuelta (){
 		
-		
 	}
 	
 	public boolean iz(){
 		return izquierda;
 	}
 	
-	public Component getBoton(){
+	public JButton getBoton() {
 		return b;
 	}
 	
