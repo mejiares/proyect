@@ -100,6 +100,12 @@ public class MundoJuego {
 	 */
 	public void rebotaHorizontal( CocheJuego coche ) {
 		// System.out.println( "Choca X");
+		if(coche.getPosX()<0){
+		coche.setPosX(0);
+		}
+		if(coche.getPosX()+100>panel.getWidth()){
+			coche.setPosX(panel.getWidth()-100);
+			}
 		double dir = coche.getDireccionActual();
 		dir = 180-dir;   // Rebote espejo sobre OY (complementario de 180)
 		if (dir < 0) dir = 360+dir;  // Corrección para mantenerlo en [0,360)
@@ -110,7 +116,13 @@ public class MundoJuego {
 	 * @param coche	Objeto que rebota en vertical
 	 */
 	public void rebotaVertical( CocheJuego coche ) {
-		// System.out.println( "Choca Y");
+		if(coche.getPosY()<0){
+			coche.setPosY(0);
+			}
+		if(coche.getPosY()+100>panel.getHeight()){
+			coche.setPosY(panel.getHeight()-100);
+			}
+		 System.out.println( "Choca Y");
 		double dir = coche.getDireccionActual();
 		dir = 360 - dir;  // Rebote espejo sobre OX (complementario de 360)
 		coche.setDireccionActual( dir );
@@ -196,12 +208,12 @@ public class MundoJuego {
 	public int Choque(){
 		
 		double x1 = miCoche.getPosX() + 50;
-		double y1 = miCoche.getPosY() + miCoche.getRadio();
+		double y1 = miCoche.getPosY() + 50;
 		
 		for(int i=0; i<a; i++){
 			 
 			double x2 = listaEstrellas.get(i).getX() + 20;
-			double y2 = listaEstrellas.get(i).getY() + listaEstrellas.get(i).getRadio();
+			double y2 = listaEstrellas.get(i).getY() + 20;
 			
 			double primero = (x2-x1)*(x2-x1);
 			double segundo = (y2-y1)*(y2-y1);

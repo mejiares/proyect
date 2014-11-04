@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 public class JLabelEstrella extends JLabel {
 	
 	public static final int RADIO_ESFERA_ESTRELLA = 17;  
-	private static final boolean DIBUJAR_ESFERA_ESTRELLA = true;
+	private static final boolean DIBUJAR_ESFERA_ESTRELLA = false;
 	private double creado= 0;
 	int x = 0;
 	int y = 0;

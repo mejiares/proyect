@@ -16,7 +16,7 @@ public class JLabelCoche extends JLabel {
 	private static final long serialVersionUID = 1L;  // para serialización
 	public static final int TAMANYO_COCHE = 100;  // píxels (igual ancho que algo)
 	public static final int RADIO_ESFERA_COCHE = 35;  // Radio en píxels del bounding circle del coche (para choques)
-	private static final boolean DIBUJAR_ESFERA_COCHE = true;  // Dibujado (para depuración) del bounding circle de choque del coche
+	private static final boolean DIBUJAR_ESFERA_COCHE = false;  // Dibujado (para depuración) del bounding circle de choque del coche
 	
 	/** Construye y devuelve el JLabel del coche con su gráfico y tamaño
 	 */
@@ -73,5 +73,6 @@ public class JLabelCoche extends JLabel {
         g2.drawImage( img, 0, 0, TAMANYO_COCHE, TAMANYO_COCHE, null );
         if (DIBUJAR_ESFERA_COCHE) g2.drawOval( TAMANYO_COCHE/2-RADIO_ESFERA_COCHE, TAMANYO_COCHE/2-RADIO_ESFERA_COCHE,
         		RADIO_ESFERA_COCHE*2, RADIO_ESFERA_COCHE*2 );
+        System.out.println("pasa");
 	}
 }

@@ -244,12 +244,12 @@ if(	Arraybool[3]==true ){
 				crea = crea +1;
 				
 				cont = cont + 1;
-				if(crea == 200){
-					miMundo.creacion(crea);
+				if(crea == 30){
+					miMundo.creacion(cont);
 					crea = 0;
 				}
 				
-				perdidas = perdidas + miMundo.Sacar(0);
+				perdidas = perdidas + miMundo.Sacar(cont);
 				lMensaje.setText("Estrellas perdidas:"+perdidas+"Puntiacion: "+puntuacion);
 				miMundo.giroEstrellas();
 				puntuacion = puntuacion +miMundo.Choque();
