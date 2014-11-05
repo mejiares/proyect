@@ -12,7 +12,7 @@ public class BotonMechaBarra extends JButton {
 	int ancho = 50;
 	int i = 0;
 	boolean girar = false;
-	ImageIcon icon = new ImageIcon("Imagenes/barra1.png");
+	ImageIcon icon = new ImageIcon("Imagenes/barra.png");
 	public BotonMechaBarra(){
 		
 		setIcon(icon);

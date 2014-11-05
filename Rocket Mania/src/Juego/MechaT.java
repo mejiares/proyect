@@ -29,7 +29,7 @@ public class MechaT extends Mecha {
 			abajo = false;
 		}
 		
-		else if (false) {
+		else if (abajo == false) {
 			izquierda = false;
 			derecha = true;;
 			arriba = true;
