@@ -1,13 +1,16 @@
 package Juego;
 
 import java.awt.Component;
+
 import javax.swing.JButton;
 
 public class MechaT extends Mecha {
 	
 	BotonMechaT b = new BotonMechaT();
+	boolean conecta;
 	
 	public MechaT() {
+		conecta = false;
 		izquierda = true;
 		derecha = true;
 		arriba = false;
@@ -56,5 +59,17 @@ public class MechaT extends Mecha {
 	public void giro() {
 		b.gira();
 		//b.repaint();
+	}
+
+	@Override
+	public void setConecta(boolean b) {
+		this.conecta = b;
+		
+	}
+
+	@Override
+	public boolean getConecta() {
+		
+		return this.conecta;
 	}
 }

@@ -11,7 +11,9 @@ import javax.swing.JButton;
 
 public class MechaBarra extends Mecha {
 	BotonMechaBarra b = new BotonMechaBarra();
+	boolean conecta;
 	public MechaBarra(){
+		conecta = false;
 		izquierda = true;
 		derecha = true;
 		arriba = false;
@@ -48,6 +50,23 @@ public class MechaBarra extends Mecha {
 		b.gira();
 		//b.repaint();
 	}
-	
+	@Override
+	public void setConecta(boolean b) {
+		this.conecta = b;
+		System.out.println("Paso 3");
+		if(conecta == true){
+			System.out.println("Paso 4");
+			this.b.cambioAmarillo();
+		}
+		else
+			this.b.cambioGris();
+		
+	}
+
+	@Override
+	public boolean getConecta() {
+		
+		return this.conecta;
+	}
 	
 }

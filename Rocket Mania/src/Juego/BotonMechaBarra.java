@@ -3,6 +3,7 @@ package Juego;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
@@ -13,12 +14,22 @@ public class BotonMechaBarra extends JButton {
 	int i = 0;
 	boolean girar = false;
 	ImageIcon icon = new ImageIcon("Imagenes/barra.png");
+	ImageIcon icon2 = new ImageIcon("Imagenes/barraA.png");
+	boolean amarillo = false;
 	public BotonMechaBarra(){
 		
 		setIcon(icon);
 		setOpaque(false);
 		setContentAreaFilled(false);
 		setBorderPainted(false);
+	}
+	
+	public void cambioAmarillo(){
+		System.out.println("Paso 5");
+		amarillo = true;
+	}
+	public void cambioGris(){
+		amarillo = false;
 	}
 	
 	public void gira() {
@@ -34,11 +45,17 @@ public class BotonMechaBarra extends JButton {
 	
 	protected void paintComponent(Graphics g) {	
 		Image img = icon.getImage() ; 
+		Image img2 = icon2.getImage() ;
 		Graphics2D g2 = (Graphics2D) g;  
         g2.rotate(miGiro, 25, 25);
         // Dibujado de la imagen
-        
+        if(amarillo == false){
         g2.drawImage( img, 0, 0, 50, 50, null );
+        }
+        else{
+        g2.drawImage( img2, 0, 0, 50, 50, null );
+        }
+        
         
         //este solo se usa con la imagen que solo es una barra, sin fondo
         //g2.drawImage( img, 0, 20, 50, 10, null );

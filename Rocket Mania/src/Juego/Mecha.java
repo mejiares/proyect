@@ -21,5 +21,9 @@ public abstract class Mecha {
 	*/
 	
 	public abstract JButton getBoton();
-
+	public abstract void giro();
+	public abstract void vuelta();
+	public abstract boolean iz();
+	public abstract void setConecta(boolean b);
+	public abstract boolean getConecta();
 }

@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.util.Random;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -17,6 +18,7 @@ import org.w3c.dom.events.MouseEvent;
 
 public class Ventana extends JFrame implements  MouseListener {
 	JPanel w = new JPanel();
+	ImageIcon ama = new ImageIcon("Imagenes/barraA.png");
 	int dimension = 10;
 	int y = 0;
 	int x = 0;
@@ -95,42 +97,60 @@ public class Ventana extends JFrame implements  MouseListener {
 			for (int j = 0; j < this.dimension; j++){
 				if(e.getSource()== matrizBotones[i][j])
 				{
-					try {
-					((MechaBarra) matrizMechas[i][j]).giro();
-					((MechaBarra) matrizMechas[i][j]).vuelta();
-					System.out.println(((MechaBarra) matrizMechas[i][j]).iz());
+					
+					 matrizMechas[i][j].giro();
+					 matrizMechas[i][j].vuelta();
+					System.out.println( matrizMechas[i][j].iz());
 					w.repaint();
 					//((BotonMechaBarra) matrizBotones[i][j]).gira();
-					System.out.println("HOLA Barra");
-					}
-					catch(Exception ex) {
-						try {
-						((MechaL) matrizMechas[i][j]).giro();
-						((MechaL) matrizMechas[i][j]).vuelta();
-						System.out.println(((MechaL) matrizMechas[i][j]).iz());
-						w.repaint();
-						//((BotonMechaBarra) matrizBotones[i][j]).gira();
-						System.out.println("HOLA L");
+					
+					if(i==0){
+						System.out.println("Paso 1");
+						if(matrizMechas[i][j].iz()==true){
+							System.out.println("Paso 2");
+							matrizMechas[i][j].setConecta(true);
+							
+						//	this.matrizBotones[i][j].setIcon(ama);
+							
+							
+							
 						}
-						catch(Exception exe) {
-							try {
-								((MechaCruz) matrizMechas[i][j]).giro();
-								((MechaCruz) matrizMechas[i][j]).vuelta();
-								System.out.println(((MechaCruz) matrizMechas[i][j]).iz());
-								w.repaint();
-								//((BotonMechaBarra) matrizBotones[i][j]).gira();
-								System.out.println("HOLA Cruz");
-							}
-							catch(Exception exec) {
-								((MechaT) matrizMechas[i][j]).giro();
-								((MechaT) matrizMechas[i][j]).vuelta();
-								System.out.println(((MechaT) matrizMechas[i][j]).iz());
-								w.repaint();
-								//((BotonMechaBarra) matrizBotones[i][j]).gira();
-								System.out.println("HOLA T");
-							}
+						else{
+							matrizMechas[i][j].setConecta(false);
+							
 						}
+							
 					}
+					/* if(matrizMechas[i][j+1].getabajo = true 
+					 * matrizMechas[i][j].setUnidoarriba(true)
+					 * if matrizMechas[i][j-1].getarriba = true
+					 * matrizMechas[i][j].setUnidoAbajo(true)
+					 * if matrizMechas[i+1][j].getizquierda = true
+					 *  matrizMechas[i][j].setUnidoderecha(true)
+					 *  if( matrizMechas[i-1][j].getderecha = true)
+					 *   matrizMechas[i][j].setUnidoizquierda(true)
+					 *  
+					 * else
+					 * matrizMechas[i][j].setUnido(false)
+					 * 
+					 *  if(matrizMechas[i][j+1].getConecta = true && getUnidoarriba =true) 
+					 * matrizMechas[i][j].setConecta(true)
+					 * if(matrizMechas[i][j-1].getConecta = true && getUnidoabajo =true) 
+					 * matrizMechas[i][j].setConecta(true)
+					 *  if(matrizMechas[i-1][j].getConecta = true && getUnidoizquierda =true) 
+					 * matrizMechas[i][j].setConecta(true)
+					 *  if(matrizMechas[i+1][j-1].getConecta = true && getUnidoderecha =true) 
+					 * matrizMechas[i][j].setConecta(true)
+					 * 
+					 * else
+					 * matrizMechas[i][j].setConecta(false)
+					 * 
+					 *
+					 * 
+					 * 
+					 * 
+					 */
+					
 				}
 			}
 		}	

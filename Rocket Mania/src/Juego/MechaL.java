@@ -6,8 +6,9 @@ import javax.swing.JButton;
 
 public class MechaL extends Mecha {
 	BotonMechaL b = new BotonMechaL();
+	boolean conecta;
 	public MechaL(){
-		
+		conecta = false;
 		izquierda = false;
 		derecha = true;
 		arriba = true;
@@ -57,5 +58,17 @@ public class MechaL extends Mecha {
 	public void giro(){
 		b.gira();
 		//b.repaint();
+	}
+
+	@Override
+	public void setConecta(boolean b) {
+		this.conecta = b;
+		
+	}
+
+	@Override
+	public boolean getConecta() {
+		
+		return this.conecta;
 	}
 }
