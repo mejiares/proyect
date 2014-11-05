@@ -12,6 +12,9 @@ import javax.swing.JPanel;
 
 import org.w3c.dom.events.MouseEvent;
 
+
+//david atope
+
 public class Ventana extends JFrame implements  MouseListener {
 	JPanel w = new JPanel();
 	int dimension = 10;
