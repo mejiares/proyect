@@ -1,6 +1,8 @@
 package Juego;
 
+import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
@@ -13,27 +15,29 @@ import javax.swing.JPanel;
 
 import org.w3c.dom.events.MouseEvent;
 
-
-//david atope
+/** Clase principal del juego RocketMania - Prog III
+ * Ventana principal del juego.
+ * @author David Mejía, Aitor Delgado, uncal Fdez. de Casadevante
+ * @version 1.3
+ * Facultad de Ingeniería - Universidad de Deusto (2014)
+ */
 
 public class Ventana extends JFrame implements  MouseListener {
 	JPanel w = new JPanel();
-	ImageIcon ama = new ImageIcon("Imagenes/barraA.png");
+	ImageIcon ama = new ImageIcon("src/Imagenes/barraA.png");
 	int dimension = 10;
 	int y = 0;
 	int x = 0;
 	private JButton[][] matrizBotones;
 	private Mecha[][] matrizMechas;
+	
 	public Ventana(){
 		setSize(50*dimension,50*dimension);
 		//w.setLayout(new GridLayout(dimension, dimension));
 		w.setLayout(null);
 		add(w);
-		//MechaBarra b = new MechaBarra();
-		//w.add(b.getBoton());
 		this.matrizMechas = new Mecha[dimension][dimension];
 		this.matrizBotones = new JButton[dimension][dimension];
-		//this.matrizBotones = new BotonMechaBarra[dimension][dimension];
 		for (int i = 0; i < this.dimension; i++){
 			for (int j = 0; j < this.dimension; j++){
 				//if(random == 0)
@@ -43,25 +47,17 @@ public class Ventana extends JFrame implements  MouseListener {
 					MechaBarra m = new MechaBarra();
 					this.matrizMechas[i][j] = m;
 					this.matrizBotones[i][j] = m.getBoton();
-					//this.matrizMechas[i][j] = new MechaBarra();
-					//this.matrizBotones[i][j] = ((MechaBarra) matrizMechas[i][j]).getBoton();
 					matrizBotones[i][j].setBounds(i*50, j*50, 50, 50);
-			
+
 				}
 				else if (ran == 1) {
-					//this.matrizMechas[i][j] = new MechaCruz();
-					//this.matrizBotones[i][j] = matrizMechas[i][j].getBoton();
-					//matrizBotones[i][j].setBounds(i*50, j*50, 50, 50);
 					MechaL m = new MechaL();
 					this.matrizMechas[i][j] = m;
 					this.matrizBotones[i][j] = m.getBoton();
 					matrizBotones[i][j].setBounds(i*50, j*50, 50, 50);
-			
+
 				}
 				else if (ran == 2) {
-					//this.matrizMechas[i][j] = new MechaCruz();
-					//this.matrizBotones[i][j] = ((MechaCruz) matrizMechas[i][j]).getBoton();
-					//matrizBotones[i][j].setBounds(i*50, j*50, 50, 50);
 					MechaCruz m = new MechaCruz();
 					this.matrizMechas[i][j] = m;
 					this.matrizBotones[i][j] = m.getBoton();
@@ -73,7 +69,13 @@ public class Ventana extends JFrame implements  MouseListener {
 					this.matrizBotones[i][j] = m.getBoton();
 					matrizBotones[i][j].setBounds(i*50, j*50, 50, 50);
 				}
-				
+				/*		else if (ran == 4) {
+					MechaVacio m = new MechaVacio();
+					this.matrizMechas[i][j] = m;
+					this.matrizBotones[i][j] = m.getBoton();
+					matrizBotones[i][j].setBounds(i*50, j*50, 50, 50);
+				}
+				 */		
 				w.add(matrizBotones[i][j]);
 				matrizBotones[i][j].addMouseListener(this);
 				System.out.println(ran);
@@ -89,15 +91,11 @@ public class Ventana extends JFrame implements  MouseListener {
 					else{
 						matrizMechas[i][j].setConecta(false);
 					}
-					
-					//actualizar();
-					
-						
 				}
+
 			}
 		} 
 	}
-	
 	
 	public static void main(String[] args) {
 		Ventana v = new Ventana();
@@ -108,184 +106,185 @@ public class Ventana extends JFrame implements  MouseListener {
 		
 		for (int i = 0; i < this.dimension; i++){
 			for (int j = 0; j < this.dimension; j++){
-					
+
 				if(j>0&&j<dimension-1 && i>0&&i<dimension-1){
-		
-						if(matrizMechas[i][j-1].down() == true && matrizMechas[i][j].up()==true ){
-							
-							matrizMechas[i][j].setUnidoUp(true);
-							//System.out.println(matrizMechas[i][j-1].down()+"pasa bool de "+j);
-						}
-						
-						else {
-							matrizMechas[i][j].setUnidoUp(false);
-							//System.out.println(matrizMechas[i][j-1].down()+"NO pasa bool de "+j);
-						}
-						
-					}	
-				}
+
+					if(matrizMechas[i][j-1].down() == true && matrizMechas[i][j].up()==true ){
+
+						matrizMechas[i][j].setUnidoUp(true);
+						//System.out.println(matrizMechas[i][j-1].down()+"pasa bool de "+j);
+					}
+
+					else {
+						matrizMechas[i][j].setUnidoUp(false);
+						//System.out.println(matrizMechas[i][j-1].down()+"NO pasa bool de "+j);
+					}
+
+				}	
 			}
-		
-	}
-	
-public void revAbajo(){
-		
-		for (int i = 0; i < this.dimension; i++){
-			for (int j = 0; j < this.dimension; j++){
-					
-				if(j>0&&j<dimension-1 && i>0&&i<dimension-1){
-		
-						if(matrizMechas[i][j+1].up() == true && matrizMechas[i][j].down()==true ){
-							
-							matrizMechas[i][j].setUnidoDown(true);
-							//System.out.println(matrizMechas[i][j-1].down()+"pasa bool de "+j);
-						}
-						
-						else {
-							matrizMechas[i][j].setUnidoDown(false);
-							//System.out.println(matrizMechas[i][j-1].down()+"NO pasa bool de "+j);
-						}
-						
-					}	
-				}
-			}
-		
+		}	
 	}
 
-	public void revDer(){
-	
-	for (int i = 0; i < this.dimension; i++){
-		for (int j = 0; j < this.dimension; j++){
-				
-			if(j>0&&j<dimension-1 && i>0&&i<dimension-1){
-	
+	public void revAbajo() {
+
+		for (int i = 0; i < this.dimension; i++){
+			for (int j = 0; j < this.dimension; j++){
+
+				if(j>0&&j<dimension-1 && i>0&&i<dimension-1){
+
+					if(matrizMechas[i][j+1].up() == true && matrizMechas[i][j].down()==true ){
+
+						matrizMechas[i][j].setUnidoDown(true);
+						//System.out.println(matrizMechas[i][j-1].down()+"pasa bool de "+j);
+					}
+
+					else {
+						matrizMechas[i][j].setUnidoDown(false);
+						//System.out.println(matrizMechas[i][j-1].down()+"NO pasa bool de "+j);
+					}
+				}	
+			}
+		}
+	}
+
+	public void revDerecha(){
+
+		for (int i = 0; i < this.dimension; i++){
+			for (int j = 0; j < this.dimension; j++){
+
+				if(j>0&&j<dimension-1 && i>0&&i<dimension-1){
+
 					if(matrizMechas[i+1][j].iz() == true && matrizMechas[i][j].der()==true ){
-						
+
 						matrizMechas[i][j].setUnidoDer(true);
 						//System.out.println(matrizMechas[i][j-1].down()+"pasa bool de "+j);
 					}
-					
+
 					else {
 						matrizMechas[i][j].setUnidoDer(false);
 						//System.out.println(matrizMechas[i][j-1].down()+"NO pasa bool de "+j);
 					}
-					
 				}	
 			}
 		}
 	}
 	
-	public void revIz(){
-	
-	for (int i = 0; i < this.dimension; i++){
-		for (int j = 0; j < this.dimension; j++){
-				
-			if(j>0&&j<dimension-1 && i>0&&i<dimension-1){
-	
+	public void revIzquierda(){
+
+		for (int i = 0; i < this.dimension; i++){
+			for (int j = 0; j < this.dimension; j++){
+
+				if(j>0&&j<dimension-1 && i>0&&i<dimension-1){
+
 					if(matrizMechas[i-1][j].der() == true && matrizMechas[i][j].iz()==true ){
-						
+
 						matrizMechas[i][j].setUnidoIz(true);
 						//System.out.println(matrizMechas[i][j-1].down()+"pasa bool de "+j);
 					}
-					
+
 					else {
 						matrizMechas[i][j].setUnidoIz(false);
 						//System.out.println(matrizMechas[i][j-1].down()+"NO pasa bool de "+j);
 					}
-					
 				}	
 			}
 		}
-	
 	}
-	
-	
-	
+		
 	public void revConecta(){
 		for (int i = 0; i < this.dimension; i++){
 			for (int j = 0; j < this.dimension; j++){
-					
-				if(j>0 &&j<dimension-1 && i>0 && i<dimension-1){
-					
-					if(i==1 && matrizMechas[i][j].iz()==false){
+
+				if (j>0 &&j<dimension-1 && i>0 && i<dimension-1){
+
+					if (i==1 && matrizMechas[i][j].iz()==false){
 						matrizMechas[i][j].setConecta(false);
 					}
-					
-					
-						if(matrizMechas[i][j-1].getConecta() == true && matrizMechas[i][j].getUnidoUp() == true) {
-							matrizMechas[i][j].setConecta(true);
-						}
-						
-						else if(matrizMechas[i][j+1].getConecta() == true && matrizMechas[i][j].getUnidoDown() == true) {
-							
-							matrizMechas[i][j].setConecta(true);
-						}
-						
-						else if(matrizMechas[i+1][j].getConecta() == true && matrizMechas[i][j].getUnidoDer() == true) {
-							
-							matrizMechas[i][j].setConecta(true);
-						}
-						
-						else if(matrizMechas[i-1][j].getConecta() == true && matrizMechas[i][j].getUnidoIz() == true) {
-							
-							matrizMechas[i][j].setConecta(true);
-						}
-						
-						
-						else{
-							if(i==1){
-								if(matrizMechas[i][j].iz()==false && matrizMechas[i][j].getUnidoUp()==false){
-									if(matrizMechas[i][j].getUnidoUp()==false){
-										if(matrizMechas[i][j].getUnidoIz()==false){
-											if(matrizMechas[i][j].getUnidoDer()==false){
-												matrizMechas[i][j].setConecta(false);
-											}
+
+
+					if(matrizMechas[i][j-1].getConecta() == true && matrizMechas[i][j].getUnidoUp() == true) {
+						matrizMechas[i][j].setConecta(true);
+					}
+
+					else if (matrizMechas[i][j+1].getConecta() == true && matrizMechas[i][j].getUnidoDown() == true) {
+
+						matrizMechas[i][j].setConecta(true);
+					}
+
+					else if (matrizMechas[i+1][j].getConecta() == true && matrizMechas[i][j].getUnidoDer() == true) {
+
+						matrizMechas[i][j].setConecta(true);
+					}
+
+					else if(matrizMechas[i-1][j].getConecta() == true && matrizMechas[i][j].getUnidoIz() == true) {
+
+						matrizMechas[i][j].setConecta(true);
+					}
+
+
+					else{
+						if(i==1){
+							if(matrizMechas[i][j].iz()==false && matrizMechas[i][j].getUnidoUp()==false){
+								if(matrizMechas[i][j].getUnidoUp()==false){
+									if(matrizMechas[i][j].getUnidoIz()==false){
+										if(matrizMechas[i][j].getUnidoDer()==false){
+											matrizMechas[i][j].setConecta(false);
 										}
 									}
-								}																
-							}
-							
-							else{
-								matrizMechas[i][j].setConecta(false);
-							}
+								}
+							}																
 						}
-					}	
+
+						else{
+							matrizMechas[i][j].setConecta(false);
+						}
+					}
+				}	
+			}
+		}
+	}
+	
+	//Pone en false los booleanos de conexión que antes estaban en true
+	public void borrarConecta(){
+		for (int i = 0; i < this.dimension; i++){
+			for (int j = 0; j < this.dimension; j++){
+
+				if (j>0 &&j<dimension-1 && i>0 && i<dimension-1){
+					
+					matrizMechas[i][j].setConecta(false);
 				}
 			}
-	}
-		
+		}
+	}		
 			
 	@Override
 	public void mouseClicked(java.awt.event.MouseEvent e) {
-		
+
 		for (int i = 0; i < this.dimension; i++){
 			for (int j = 0; j < this.dimension; j++){
 				if(e.getSource()== matrizBotones[i][j])
 				{
+					borrarConecta();
 					
-					 matrizMechas[i][j].giro();
-					 matrizMechas[i][j].vuelta();
+					matrizMechas[i][j].giro();
+					matrizMechas[i][j].vuelta();
 					System.out.println( matrizMechas[i][j].iz());
-					w.repaint();
-					//((BotonMechaBarra) matrizBotones[i][j]).gira();
-					
+
 					if(i==1 && j>0 && j<dimension-1){
 						//System.out.println("Paso 1");
 						if(matrizMechas[i][j].iz()==true){
-						//	System.out.println("Paso 2");
+							//	System.out.println("Paso 2");
 							matrizMechas[i][j].setConecta(true);
 						}
 						else{
 							matrizMechas[i][j].setConecta(false);
-							
 						}
-							
 					}
-					
-					revIz();
-					//revDer();
+
+					revIzquierda();
 					revArriba();
 					revAbajo();
+					revDerecha();
 					revConecta();
 					//System.out.println(matrizMechas[i][j].down());
 					System.out.println("Empieza");
@@ -293,7 +292,7 @@ public void revAbajo(){
 					System.out.println("der "+matrizMechas[i][j].getUnidoDer());
 					System.out.println("ab "+matrizMechas[i][j].getUnidoDown());
 					System.out.println("ar "+matrizMechas[i][j].getUnidoUp());
-					
+					w.repaint();
 				}
 			}
 		}	
@@ -318,5 +317,4 @@ public void revAbajo(){
 	public void mouseExited(java.awt.event.MouseEvent e) {
 		// TODO Auto-generated method stub
 	}
-	
 }

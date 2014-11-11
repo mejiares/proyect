@@ -13,8 +13,9 @@ public class BotonMechaCruz extends JButton {
 	int i = 0;
 	boolean girar = false;
 	boolean amarillo = false;
-	ImageIcon icon = new ImageIcon("Imagenes/cruz.png");
-	ImageIcon icon2 = new ImageIcon("Imagenes/cruzA.png");
+	ImageIcon icon = new ImageIcon("src/Imagenes/cruz.png");
+	ImageIcon icon2 = new ImageIcon("src/Imagenes/cruzA.png");
+	
 	public BotonMechaCruz(){
 		
 		setIcon(icon);
@@ -27,17 +28,16 @@ public class BotonMechaCruz extends JButton {
 		//System.out.println("Paso 5");
 		amarillo = true;
 	}
+	
 	public void cambioGris(){
 		amarillo = false;
+
 	}
 	
 	public void gira() {
 		//miGiro = 90/180*Math.PI;
 		//miGiro = -miGiro;  
-		
 		miGiro = miGiro + Math.PI/2; 
-		
-		//repaint();
 		System.out.println("Boton Cruz gira:  " + miGiro);
 	}
 	

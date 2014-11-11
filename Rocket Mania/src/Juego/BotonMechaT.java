@@ -13,8 +13,8 @@ public class BotonMechaT extends JButton {
 	int i = 0;
 	boolean girar = false;
 	boolean amarillo = false;
-	ImageIcon icon = new ImageIcon("Imagenes/T.png");
-	ImageIcon icon2 = new ImageIcon("Imagenes/TA.png");
+	ImageIcon icon = new ImageIcon("src/Imagenes/T.png");
+	ImageIcon icon2 = new ImageIcon("src/Imagenes/TA.png");
 	public BotonMechaT(){
 		
 		setIcon(icon);

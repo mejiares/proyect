@@ -6,16 +6,16 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-public class BotonMechaL extends JButton {
+public class BotonMechaVacio extends JButton {
 	double miGiro = 0;
 	int alto = 50;
 	int ancho = 50;
 	int i = 0;
 	boolean girar = false;
 	boolean amarillo = false;
-	ImageIcon icon = new ImageIcon("src/Imagenes/L.png");
-	ImageIcon icon2 = new ImageIcon("src/Imagenes/LA.png");
-	public BotonMechaL(){
+	ImageIcon icon = new ImageIcon("src/Imagenes/Vacio.png");
+	ImageIcon icon2 = new ImageIcon("src/Imagenes/Vacio.png");
+	public BotonMechaVacio(){
 		
 		setIcon(icon);
 		setOpaque(false);
@@ -30,6 +30,7 @@ public class BotonMechaL extends JButton {
 	public void cambioGris(){
 		amarillo = false;
 	}
+	
 	public void gira() {
 		//miGiro = 90/180*Math.PI;
 		//miGiro = -miGiro;  
@@ -37,7 +38,7 @@ public class BotonMechaL extends JButton {
 		miGiro = miGiro + Math.PI/2; 
 		
 		//repaint();
-		System.out.println("Boton L gira:  " + miGiro);
+		System.out.println("Boton Vacio gira:  " + miGiro);
 	}
 	
 	protected void paintComponent(Graphics g) {	
@@ -51,10 +52,11 @@ public class BotonMechaL extends JButton {
        }
        else{
         g2.drawImage( img, 0, 0, 50, 50, null );
+        
        }
         g2.drawRect(0, 0, 50,50);
         i = i +1;
-        // System.out.println("Pasa2  " + i);
-               
+        // System.out.println("Pasa2  " + i);          
+        
 	}
 }
