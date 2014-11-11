@@ -14,10 +14,16 @@ public class MechaBarra extends Mecha {
 	boolean conecta;
 	public MechaBarra(){
 		conecta = false;
+		
 		izquierda = true;
 		derecha = true;
 		arriba = false;
 		abajo = false;
+		
+		uIzquierda = false;
+		uDerecha = false;
+		uArriba = false;
+		uAbajo = false;
 	}
 	
 	public void vuelta (){
@@ -53,9 +59,9 @@ public class MechaBarra extends Mecha {
 	@Override
 	public void setConecta(boolean b) {
 		this.conecta = b;
-		System.out.println("Paso 3");
+		//System.out.println("Paso 3");
 		if(conecta == true){
-			System.out.println("Paso 4");
+		//	System.out.println("Paso 4");
 			this.b.cambioAmarillo();
 		}
 		else
@@ -67,6 +73,67 @@ public class MechaBarra extends Mecha {
 	public boolean getConecta() {
 		
 		return this.conecta;
+	}
+	@Override
+	public boolean der() {
+		// TODO Auto-generated method stub
+		return this.derecha;
+	}
+
+	@Override
+	public boolean up() {
+		// TODO Auto-generated method stub
+		return this.arriba;
+	}
+
+	@Override
+	public boolean down() {
+		// TODO Auto-generated method stub
+		return this.abajo;
+	}
+
+	@Override
+	public void setUnidoIz(boolean b) {
+		this.uIzquierda = b;
+		
+	}
+
+	@Override
+	public void setUnidoDer(boolean b) {
+		this.uDerecha = b;
+		
+	}
+
+	@Override
+	public void setUnidoUp(boolean b) {
+		this.uArriba = b;
+		
+	}
+
+	@Override
+	public void setUnidoDown(boolean b) {
+		this.uAbajo = b;
+		
+	}
+
+	@Override
+	public boolean getUnidoIz() {
+		return this.uIzquierda;
+	}
+
+	@Override
+	public boolean getUnidoDer() {
+		return this.uDerecha;
+	}
+
+	@Override
+	public boolean getUnidoUp() {
+		return this.uArriba;
+	}
+
+	@Override
+	public boolean getUnidoDown() {
+		return this.uAbajo;
 	}
 	
 }

@@ -25,7 +25,7 @@ public class BotonMechaBarra extends JButton {
 	}
 	
 	public void cambioAmarillo(){
-		System.out.println("Paso 5");
+		//System.out.println("Paso 5");
 		amarillo = true;
 	}
 	public void cambioGris(){
@@ -49,11 +49,11 @@ public class BotonMechaBarra extends JButton {
 		Graphics2D g2 = (Graphics2D) g;  
         g2.rotate(miGiro, 25, 25);
         // Dibujado de la imagen
-        if(amarillo == false){
-        g2.drawImage( img, 0, 0, 50, 50, null );
+        if(amarillo == true){
+        g2.drawImage( img2, 0, 0, 50, 50, null );
         }
         else{
-        g2.drawImage( img2, 0, 0, 50, 50, null );
+        g2.drawImage( img, 0, 0, 50, 50, null );
         }
         
         

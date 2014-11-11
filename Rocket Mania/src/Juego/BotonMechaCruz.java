@@ -12,13 +12,23 @@ public class BotonMechaCruz extends JButton {
 	int ancho = 50;
 	int i = 0;
 	boolean girar = false;
+	boolean amarillo = false;
 	ImageIcon icon = new ImageIcon("Imagenes/cruz.png");
+	ImageIcon icon2 = new ImageIcon("Imagenes/cruzA.png");
 	public BotonMechaCruz(){
 		
 		setIcon(icon);
 		setOpaque(false);
 		setContentAreaFilled(false);
 		setBorderPainted(false);
+	}
+	
+	public void cambioAmarillo(){
+		//System.out.println("Paso 5");
+		amarillo = true;
+	}
+	public void cambioGris(){
+		amarillo = false;
 	}
 	
 	public void gira() {
@@ -33,11 +43,17 @@ public class BotonMechaCruz extends JButton {
 	
 	protected void paintComponent(Graphics g) {	
 		Image img = icon.getImage() ; 
+		Image img2 = icon2.getImage() ;
 		Graphics2D g2 = (Graphics2D) g;  
         g2.rotate(miGiro, 25, 25);
         // Dibujado de la imagen
-       
+       if(amarillo == true){
+    	   g2.drawImage( img2, 0, 0, 50, 50, null );
+       }
+       else{
         g2.drawImage( img, 0, 0, 50, 50, null );
+        
+       }
         g2.drawRect(0, 0, 50,50);
         i = i +1;
         // System.out.println("Pasa2  " + i);          
