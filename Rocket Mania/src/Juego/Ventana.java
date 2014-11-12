@@ -108,7 +108,7 @@ public class Ventana extends JFrame implements  MouseListener {
 			v.revArriba();
 			v.revAbajo();
 			v.revDerecha();
-			//D
+			//d
 			int has = 0;
 			do{
 			v.revConecta();
