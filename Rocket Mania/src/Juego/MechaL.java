@@ -6,9 +6,12 @@ import javax.swing.JButton;
 
 public class MechaL extends Mecha {
 	BotonMechaL b = new BotonMechaL();
-	boolean conecta;
+	boolean conectaDer;
+	boolean conectaIzq;
+	
 	public MechaL(){
-		conecta = false;
+		conectaDer = false;
+		conectaIzq = false;
 		
 		izquierda = false;
 		derecha = true;
@@ -63,26 +66,38 @@ public class MechaL extends Mecha {
 	
 	public void giro(){
 		b.gira();
-		//b.repaint();
 	}
 
 	@Override
-	public void setConecta(boolean b) {
-		this.conecta = b;
+	public void setConectaDer(boolean b) {
+		this.conectaDer = b;
 		//System.out.println("Paso 3");
-		if(conecta == true){
+		if(conectaDer == true){
 		//	System.out.println("Paso 4");
 			this.b.cambioAmarillo();
 		}
 		else
-			this.b.cambioGris();
-		
+			this.b.cambioGris();	
 	}
 
 	@Override
-	public boolean getConecta() {
-		
-		return this.conecta;
+	public boolean getConectaDer() {
+		return this.conectaDer;
+	}
+	
+	@Override
+	public void setConectaIzq(boolean b) {
+		this.conectaIzq = b;
+		if(conectaIzq == true){
+			this.b.cambioNaranja();
+		}
+		else
+			this.b.cambioGris();		
+	}
+
+	@Override
+	public boolean getConectaIzq() {
+		return this.conectaIzq;
 	}
 
 	@Override
@@ -105,26 +120,22 @@ public class MechaL extends Mecha {
 	
 	@Override
 	public void setUnidoIz(boolean b) {
-		this.uIzquierda = b;
-		
+		this.uIzquierda = b;		
 	}
 
 	@Override
 	public void setUnidoDer(boolean b) {
-		this.uDerecha = b;
-		
+		this.uDerecha = b;		
 	}
 
 	@Override
 	public void setUnidoUp(boolean b) {
-		this.uArriba = b;
-		
+		this.uArriba = b;		
 	}
 
 	@Override
 	public void setUnidoDown(boolean b) {
-		this.uAbajo = b;
-		
+		this.uAbajo = b;		
 	}
 
 	@Override

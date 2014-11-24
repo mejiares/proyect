@@ -11,9 +11,12 @@ import javax.swing.JButton;
 
 public class MechaBarra extends Mecha {
 	BotonMechaBarra b = new BotonMechaBarra();
-	boolean conecta;
+	boolean conectaDer;
+	boolean conectaIzq;
+	
 	public MechaBarra(){
-		conecta = false;
+		conectaDer = false;
+		conectaIzq = false;
 		
 		izquierda = true;
 		derecha = true;
@@ -54,26 +57,39 @@ public class MechaBarra extends Mecha {
 	
 	public void giro(){
 		b.gira();
-		//b.repaint();
 	}
+	
 	@Override
-	public void setConecta(boolean b) {
-		this.conecta = b;
-		//System.out.println("Paso 3");
-		if(conecta == true){
-		//	System.out.println("Paso 4");
+	public void setConectaDer(boolean b) {
+		this.conectaDer = b;
+		if(conectaDer == true){
 			this.b.cambioAmarillo();
 		}
 		else
-			this.b.cambioGris();
-		
+			this.b.cambioGris();		
 	}
 
 	@Override
-	public boolean getConecta() {
+	public boolean getConectaDer() {
 		
-		return this.conecta;
+		return this.conectaDer;
 	}
+	
+	public void setConectaIzq(boolean b) {
+		this.conectaIzq = b;
+		if(conectaIzq == true){
+			this.b.cambioNaranja();
+		}
+		else
+			this.b.cambioGris();		
+	}
+	
+	@Override
+	public boolean getConectaIzq() {
+
+		return this.conectaIzq;
+	}
+	
 	@Override
 	public boolean der() {
 		// TODO Auto-generated method stub
@@ -135,5 +151,7 @@ public class MechaBarra extends Mecha {
 	public boolean getUnidoDown() {
 		return this.uAbajo;
 	}
+
+
 	
 }

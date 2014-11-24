@@ -13,8 +13,11 @@ public class BotonMechaT extends JButton {
 	int i = 0;
 	boolean girar = false;
 	boolean amarillo = false;
+	boolean naranja = false;
+	boolean rojo = false;
 	ImageIcon icon = new ImageIcon("src/Imagenes/T.png");
 	ImageIcon icon2 = new ImageIcon("src/Imagenes/TA.png");
+	ImageIcon icon3 = new ImageIcon("src/Imagenes/TN.png");
 	public BotonMechaT(){
 		
 		setIcon(icon);
@@ -24,11 +27,27 @@ public class BotonMechaT extends JButton {
 	}
 	
 	public void cambioAmarillo(){
-		//System.out.println("Paso 5");
 		amarillo = true;
+		naranja = false;
+		rojo = false;
 	}
+	
 	public void cambioGris(){
 		amarillo = false;
+		naranja = false;
+		rojo = false;
+	}
+	
+	public void cambioNaranja(){
+		amarillo = false;
+		naranja = true;
+		rojo = false;
+	}
+	
+	public void cambioRojo(){
+		amarillo = false;
+		naranja = false;
+		rojo = true;
 	}
 	
 	public void gira() {

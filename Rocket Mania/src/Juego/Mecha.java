@@ -36,6 +36,8 @@ public abstract class Mecha {
 	public abstract boolean getUnidoDer();
 	public abstract boolean getUnidoUp();
 	public abstract boolean getUnidoDown();
-	public abstract void setConecta(boolean b);
-	public abstract boolean getConecta();
+	public abstract void setConectaDer(boolean b);
+	public abstract boolean getConectaDer();
+	public abstract void setConectaIzq(boolean b);
+	public abstract boolean getConectaIzq();
 }
