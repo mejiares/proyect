@@ -134,7 +134,6 @@ public class Ventana extends JFrame implements  MouseListener {
 						matrizMechas[i][j].setUnidoUp(false);
 						//System.out.println(matrizMechas[i][j-1].down()+"NO pasa bool de "+j);
 					}
-
 				}	
 			}
 		}	
@@ -211,11 +210,10 @@ public class Ventana extends JFrame implements  MouseListener {
 			for (int j = 0; j < this.dimension; j++){
 
 				if (j>0 &&j<dimension-1 && i>0 && i<dimension-1){
-					//System.out.println("Entra conecta");
-
-					/*if (i==1 && matrizMechas[i][j].iz()==false){
-						matrizMechas[i][j].setConecta(false);
-					}*/
+//					System.out.println("Entra conecta");
+//					if (i==1 && matrizMechas[i][j].iz()==false){
+//						matrizMechas[i][j].setConecta(false);
+//					}
 
 					
 					 if(matrizMechas[i-1][j].getConectaDer() == true && matrizMechas[i][j].getUnidoIz() == true) {
@@ -272,47 +270,33 @@ public class Ventana extends JFrame implements  MouseListener {
 	}
 	
 	public void revConectaIzq(){
-		for (int i = 0; i < this.dimension; i++){
-			for (int j = 0; j < this.dimension; j++){
-
-				if (j>0 &&j<dimension-1 && i>0 && i<dimension-1){
-					//System.out.println("Entra conecta");
-
-					/*if (i==1 && matrizMechas[i][j].iz()==false){
-						matrizMechas[i][j].setConecta(false);
-					}*/
-
-					
-					 if(matrizMechas[i-1][j].getConectaDer() == true && matrizMechas[i][j].getUnidoIz() == true) {
-
-						matrizMechas[i][j].setConectaDer(true);
+		for (int i = this.dimension-1; i < 0; i--){
+			for (int j = this.dimension; j < 0; j--){
+//TODO				
+				if (j>0 &&j<dimension-1 && i>0 && i<dimension-1) {				
+					if(matrizMechas[i-1][j].getConectaIzq() == true && matrizMechas[i][j].getUnidoIz() == true) {
+						matrizMechas[i][j].setConectaIzq(true);
 					}
 					
-					else if(matrizMechas[i][j-1].getConectaDer() == true && matrizMechas[i][j].getUnidoUp() == true) {
-						matrizMechas[i][j].setConectaDer(true);
-						
+					else if (matrizMechas[i][j-1].getConectaIzq() == true && matrizMechas[i][j].getUnidoUp() == true) {
+						matrizMechas[i][j].setConectaIzq(true);						
 					}
 
-					else if (matrizMechas[i][j+1].getConectaDer() == true && matrizMechas[i][j].getUnidoDown() == true) {
-
-						matrizMechas[i][j].setConectaDer(true);
+					else if (matrizMechas[i][j+1].getConectaIzq() == true && matrizMechas[i][j].getUnidoDown() == true) {
+						matrizMechas[i][j].setConectaIzq(true);
 						System.out.println("Pasa abajo");
-						System.out.println("i "+i+" j "+j);
-						
+						System.out.println("i "+i+" j "+j);					
 					}
 
-					else if (matrizMechas[i+1][j].getConectaDer() == true && matrizMechas[i][j].getUnidoDer() == true) {
-
-						matrizMechas[i][j].setConectaDer(true);
-						System.out.println("Pasa der");
+					else if (matrizMechas[i+1][j].getConectaIzq() == true && matrizMechas[i][j].getUnidoDer() == true) {
+						matrizMechas[i][j].setConectaIzq(true);
+						System.out.println("Pasa izq");
 						System.out.println("i "+i+" j "+j);
 					}
 
-					else if(matrizMechas[i-1][j].getConectaDer() == true && matrizMechas[i][j].getUnidoIz() == true) {
-
-						matrizMechas[i][j].setConectaDer(true);
+					else if(matrizMechas[i-1][j].getConectaIzq() == true && matrizMechas[i][j].getUnidoIz() == true) {
+						matrizMechas[i][j].setConectaIzq(true);
 					}
-
 
 					else{
 						if(i==1){
@@ -320,7 +304,7 @@ public class Ventana extends JFrame implements  MouseListener {
 								if(matrizMechas[i][j].getUnidoUp()==false){
 									if(matrizMechas[i][j].getUnidoIz()==false){
 										if(matrizMechas[i][j].getUnidoDer()==false){
-											matrizMechas[i][j].setConectaDer(false);
+											matrizMechas[i][j].setConectaIzq(false);
 										}
 									}
 								}
@@ -328,7 +312,7 @@ public class Ventana extends JFrame implements  MouseListener {
 						}
 
 						else{
-							matrizMechas[i][j].setConectaDer(false);
+							matrizMechas[i][j].setConectaIzq(false);
 						}
 					}
 				}	
@@ -340,9 +324,7 @@ public class Ventana extends JFrame implements  MouseListener {
 	public void borrarConecta(){
 		for (int i = 0; i < this.dimension; i++){
 			for (int j = 0; j < this.dimension; j++){
-
-				if (j>0 &&j<dimension-1 && i>0 && i<dimension-1){
-					
+				if (j>0 &&j<dimension-1 && i>0 && i<dimension-1){					
 					matrizMechas[i][j].setConectaDer(false);
 				}
 			}
