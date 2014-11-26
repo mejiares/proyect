@@ -18,7 +18,7 @@ import org.w3c.dom.events.MouseEvent;
 /** Clase principal del juego RocketMania - Prog III
  * Ventana principal del juego.
  * @author David Mejía, Aitor Delgado, uncal Fdez. de Casadevante
- * @version 1.3
+ * @version 1.4
  * Facultad de Ingeniería - Universidad de Deusto (2014)
  */
 
@@ -43,39 +43,39 @@ public class Ventana extends JFrame implements  MouseListener {
 				//if(random == 0)
 				Random r = new Random();
 				int ran = r.nextInt(10) ;
-				if (ran  < 5) {
+				if (ran  < 4) {
 					MechaBarra m = new MechaBarra();
 					this.matrizMechas[i][j] = m;
 					this.matrizBotones[i][j] = m.getBoton();
 					matrizBotones[i][j].setBounds(i*50, j*50, 50, 50);
 
 				}
-				else if (ran < 8) {
+				else if (ran < 7) {
 					MechaL m = new MechaL();
 					this.matrizMechas[i][j] = m;
 					this.matrizBotones[i][j] = m.getBoton();
 					matrizBotones[i][j].setBounds(i*50, j*50, 50, 50);
 
 				}
-				else if (ran <9) {
+				else if (ran <8) {
 					MechaCruz m = new MechaCruz();
 					this.matrizMechas[i][j] = m;
 					this.matrizBotones[i][j] = m.getBoton();
 					matrizBotones[i][j].setBounds(i*50, j*50, 50, 50);
 				}
-				else if (ran < 11) {
+				else if (ran < 10) {
 					MechaT m = new MechaT();
 					this.matrizMechas[i][j] = m;
 					this.matrizBotones[i][j] = m.getBoton();
 					matrizBotones[i][j].setBounds(i*50, j*50, 50, 50);
 				}
-				/*		else if (ran == 4) {
+				else if (ran < 11) {
 					MechaVacio m = new MechaVacio();
 					this.matrizMechas[i][j] = m;
 					this.matrizBotones[i][j] = m.getBoton();
 					matrizBotones[i][j].setBounds(i*50, j*50, 50, 50);
 				}
-				 */		
+				 		
 				w.add(matrizBotones[i][j]);
 				matrizBotones[i][j].addMouseListener(this);
 				System.out.println(ran);
@@ -88,8 +88,11 @@ public class Ventana extends JFrame implements  MouseListener {
 						System.out.println("Paso 2");
 						matrizMechas[i][j].setConectaDer(true);
 					}
-					else{
+					else if(matrizMechas[i][j].der()==true){
+						matrizMechas[i][j].setConectaIzq(true);
+					} else {
 						matrizMechas[i][j].setConectaDer(false);
+						matrizMechas[i][j].setConectaIzq(false);
 					}
 				}
 			}
@@ -106,9 +109,11 @@ public class Ventana extends JFrame implements  MouseListener {
 			v.revArriba();
 			v.revAbajo();
 			v.revDerecha();
+			v.revIzquierda();
 			int has = 0;
-			do{
+			do {
 			v.revConectaDer();
+			v.revConectaIzq();
 			has = has + 1;
 			System.out.println(has);
 			}
@@ -162,18 +167,19 @@ public class Ventana extends JFrame implements  MouseListener {
 	}
 
 	public void revDerecha(){
-
+		
 		for (int i = 0; i < this.dimension; i++){
+			
 			for (int j = 0; j < this.dimension; j++){
-
+				
 				if(j>0&&j<dimension-1 && i>0&&i<dimension-1){
-
+					
 					if(matrizMechas[i+1][j].iz() == true && matrizMechas[i][j].der()==true ){
 
 						matrizMechas[i][j].setUnidoDer(true);
 						//System.out.println(matrizMechas[i][j-1].down()+"pasa bool de "+j);
 					}
-
+				
 					else {
 						matrizMechas[i][j].setUnidoDer(false);
 						//System.out.println(matrizMechas[i][j-1].down()+"NO pasa bool de "+j);
@@ -184,18 +190,19 @@ public class Ventana extends JFrame implements  MouseListener {
 	}
 	
 	public void revIzquierda(){
-
+		
 		for (int i = 0; i < this.dimension; i++){
+			
 			for (int j = 0; j < this.dimension; j++){
-
+				
 				if(j>0&&j<dimension-1 && i>0&&i<dimension-1){
-
+					
 					if(matrizMechas[i-1][j].der() == true && matrizMechas[i][j].iz()==true ){
 
 						matrizMechas[i][j].setUnidoIz(true);
 						//System.out.println(matrizMechas[i][j-1].down()+"pasa bool de "+j);
 					}
-
+					
 					else {
 						matrizMechas[i][j].setUnidoIz(false);
 						//System.out.println(matrizMechas[i][j-1].down()+"NO pasa bool de "+j);
@@ -206,17 +213,18 @@ public class Ventana extends JFrame implements  MouseListener {
 	}
 		
 	public void revConectaDer(){
+		
 		for (int i = 0; i < this.dimension; i++){
+			
 			for (int j = 0; j < this.dimension; j++){
-
+				
 				if (j>0 &&j<dimension-1 && i>0 && i<dimension-1){
 //					System.out.println("Entra conecta");
 //					if (i==1 && matrizMechas[i][j].iz()==false){
 //						matrizMechas[i][j].setConecta(false);
-//					}
-
+//					}				
 					
-					 if(matrizMechas[i-1][j].getConectaDer() == true && matrizMechas[i][j].getUnidoIz() == true) {
+					if(matrizMechas[i-1][j].getConectaDer() == true && matrizMechas[i][j].getUnidoIz() == true) {
 
 						matrizMechas[i][j].setConectaDer(true);
 					}
@@ -271,8 +279,7 @@ public class Ventana extends JFrame implements  MouseListener {
 	
 	public void revConectaIzq(){
 		for (int i = this.dimension-1; i < 0; i--){
-			for (int j = this.dimension; j < 0; j--){
-//TODO				
+			for (int j = this.dimension; j < 0; j--){				
 				if (j>0 &&j<dimension-1 && i>0 && i<dimension-1) {				
 					if(matrizMechas[i-1][j].getConectaIzq() == true && matrizMechas[i][j].getUnidoIz() == true) {
 						matrizMechas[i][j].setConectaIzq(true);
