@@ -9,6 +9,7 @@ public abstract class Mecha {
 	int pos = 0;
 	boolean izquierda, derecha, arriba, abajo;
 	boolean uIzquierda, uDerecha, uArriba, uAbajo;
+	boolean conectado;
 	
 	/*
 	public Mecha() {

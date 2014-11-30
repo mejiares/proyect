@@ -17,7 +17,8 @@ public class BotonMechaL extends JButton {
 	boolean rojo = false;
 	ImageIcon icon = new ImageIcon("src/Imagenes/L.png");
 	ImageIcon icon2 = new ImageIcon("src/Imagenes/LA.png");
-	ImageIcon icon3 = new ImageIcon("src/Imagenes/LN.png");
+	ImageIcon icon3 = new ImageIcon("src/Imagenes/LR.png");
+	ImageIcon icon4 = new ImageIcon("src/Imagenes/LN.png");
 	public BotonMechaL(){
 		
 		setIcon(icon);
@@ -64,14 +65,24 @@ public class BotonMechaL extends JButton {
 	protected void paintComponent(Graphics g) {	
 		Image img = icon.getImage() ; 
 		Image img2 = icon2.getImage() ;
+		Image img3 = icon3.getImage();
+		Image img4 = icon4.getImage();
 		Graphics2D g2 = (Graphics2D) g;  
         g2.rotate(miGiro, 25, 25);
         // Dibujado de la imagen
-       if(amarillo == true){
-    	   g2.drawImage( img2, 0, 0, 50, 50, null );
-       }
+      if(amarillo == true){
+        g2.drawImage( img2, 0, 0, 50, 50, null );
+        }
+      else if(rojo ==true){
+        g2.drawImage( img3, 0, 0, 50, 50, null );
+  
+        }
+      else if(naranja == true){
+    	  g2.drawImage( img4, 0, 0, 50, 50, null );
+      }
        else{
         g2.drawImage( img, 0, 0, 50, 50, null );
+      
        }
         g2.drawRect(0, 0, 50,50);
         i = i +1;

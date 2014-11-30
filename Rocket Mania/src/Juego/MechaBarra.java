@@ -64,9 +64,13 @@ public class MechaBarra extends Mecha {
 		this.conectaDer = b;
 		if(conectaDer == true){
 			this.b.cambioAmarillo();
+			if(conectaIzq==true){
+				this.b.cambioNaranja();
+			}
 		}
-		else
-			this.b.cambioGris();		
+		else if (conectaIzq == false){
+			this.b.cambioGris();
+		}
 	}
 
 	@Override
@@ -77,11 +81,18 @@ public class MechaBarra extends Mecha {
 	
 	public void setConectaIzq(boolean b) {
 		this.conectaIzq = b;
+		
 		if(conectaIzq == true){
-			this.b.cambioNaranja();
+			System.out.println("pasa!!");
+			this.b.cambioRojo();
+			if(conectaDer==true){
+				this.b.cambioNaranja();
+			}
 		}
-		else
-			this.b.cambioGris();		
+		else if (conectaDer == false){
+			this.b.cambioGris();
+		}
+					
 	}
 	
 	@Override

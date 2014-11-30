@@ -75,9 +75,13 @@ public class MechaL extends Mecha {
 		if(conectaDer == true){
 		//	System.out.println("Paso 4");
 			this.b.cambioAmarillo();
+			if(conectaIzq==true){
+				this.b.cambioNaranja();
+			}
 		}
-		else
-			this.b.cambioGris();	
+		else if (conectaIzq == false){
+			this.b.cambioGris();
+		}	
 	}
 
 	@Override
@@ -89,10 +93,14 @@ public class MechaL extends Mecha {
 	public void setConectaIzq(boolean b) {
 		this.conectaIzq = b;
 		if(conectaIzq == true){
-			this.b.cambioNaranja();
+			this.b.cambioRojo();
+			if(conectaDer==true){
+				this.b.cambioNaranja();
+			}
 		}
-		else
-			this.b.cambioGris();		
+		else if (conectaDer == false){
+			this.b.cambioGris();
+		}		
 	}
 
 	@Override
