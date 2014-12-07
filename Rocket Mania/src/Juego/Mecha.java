@@ -5,11 +5,11 @@ import java.awt.Component;
 import javax.swing.JButton;
 
 public abstract class Mecha {
-	int giro = 90;
-	int pos = 0;
-	boolean izquierda, derecha, arriba, abajo;
-	boolean uIzquierda, uDerecha, uArriba, uAbajo;
-	boolean conectado;
+	protected int giro = 1;
+	protected int pos = 0;
+	protected boolean izquierda, derecha, arriba, abajo;
+	protected boolean uIzquierda, uDerecha, uArriba, uAbajo;
+	boolean conectado, revisado, anulado;
 	
 	/*
 	public Mecha() {
@@ -24,6 +24,7 @@ public abstract class Mecha {
 	
 	public abstract JButton getBoton();
 	public abstract void giro();
+	public abstract void anular();
 	public abstract void vuelta();
 	public abstract boolean iz();
 	public abstract boolean der();

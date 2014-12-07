@@ -22,6 +22,10 @@ public class MechaL extends Mecha {
 		uDerecha = false;
 		uArriba = false;
 		uAbajo = false;
+		
+		conectado = false;
+		revisado = false;
+		anulado = false;
 	}
 	
 	public void vuelta (){
@@ -77,6 +81,7 @@ public class MechaL extends Mecha {
 			this.b.cambioAmarillo();
 			if(conectaIzq==true){
 				this.b.cambioNaranja();
+				conectado = true;
 			}
 		}
 		else if (conectaIzq == false){
@@ -96,6 +101,7 @@ public class MechaL extends Mecha {
 			this.b.cambioRojo();
 			if(conectaDer==true){
 				this.b.cambioNaranja();
+				conectado = true;
 			}
 		}
 		else if (conectaDer == false){
@@ -164,5 +170,12 @@ public class MechaL extends Mecha {
 	@Override
 	public boolean getUnidoDown() {
 		return this.uAbajo;
+	}
+
+	@Override
+	public void anular() {
+		// TODO Auto-generated method stub
+		b.setVacio();
+		anulado = true;
 	}
 }

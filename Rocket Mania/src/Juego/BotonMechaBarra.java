@@ -16,6 +16,7 @@ public class BotonMechaBarra extends JButton {
 	boolean amarillo = false;
 	boolean naranja = false;
 	boolean rojo = false;
+	boolean vacio= false;
 	ImageIcon icon = new ImageIcon("src/Imagenes/barra.png");
 	ImageIcon icon2 = new ImageIcon("src/Imagenes/barraA.png");
 	ImageIcon icon3 = new ImageIcon("src/Imagenes/barraR.png");
@@ -28,6 +29,12 @@ public class BotonMechaBarra extends JButton {
 		setBorderPainted(false);
 	}
 	
+	public void setVacio(){
+		amarillo = false;
+		naranja = false;
+		rojo = false;
+		vacio = true;
+	}
 	public void cambioAmarillo(){
 		amarillo = true;
 		naranja = false;
@@ -71,7 +78,10 @@ public class BotonMechaBarra extends JButton {
 		Graphics2D g2 = (Graphics2D) g;  
         g2.rotate(miGiro, 25, 25);
         // Dibujado de la imagen
-      if(amarillo == true){
+      if(vacio == true){
+    	  
+      }
+      else if(amarillo == true){
         g2.drawImage( img2, 0, 0, 50, 50, null );
         }
       else if(rojo ==true){

@@ -15,6 +15,7 @@ public class BotonMechaT extends JButton {
 	boolean amarillo = false;
 	boolean naranja = false;
 	boolean rojo = false;
+	boolean vacio = false;
 	ImageIcon icon = new ImageIcon("src/Imagenes/T.png");
 	ImageIcon icon2 = new ImageIcon("src/Imagenes/TA.png");
 	ImageIcon icon3 = new ImageIcon("src/Imagenes/TR.png");
@@ -25,6 +26,13 @@ public class BotonMechaT extends JButton {
 		setOpaque(false);
 		setContentAreaFilled(false);
 		setBorderPainted(false);
+	}
+	
+	public void setVacio(){
+		amarillo = false;
+		naranja = false;
+		rojo = false;
+		vacio = true;
 	}
 	
 	public void cambioAmarillo(){
@@ -69,20 +77,23 @@ public class BotonMechaT extends JButton {
 		Graphics2D g2 = (Graphics2D) g;  
         g2.rotate(miGiro, 25, 25);
         // Dibujado de la imagen
-      if(amarillo == true){
-        g2.drawImage( img2, 0, 0, 50, 50, null );
+        if(vacio == true){
+      	  
         }
-      else if(rojo ==true){
-        g2.drawImage( img3, 0, 0, 50, 50, null );
-  
+        else if(amarillo == true){
+          g2.drawImage( img2, 0, 0, 50, 50, null );
+          }
+        else if(rojo ==true){
+          g2.drawImage( img3, 0, 0, 50, 50, null );
+    
+          }
+        else if(naranja == true){
+      	  g2.drawImage( img4, 0, 0, 50, 50, null );
         }
-      else if(naranja == true){
-    	  g2.drawImage( img4, 0, 0, 50, 50, null );
-      }
-       else{
-        g2.drawImage( img, 0, 0, 50, 50, null );
-      
-       }
+         else{
+          g2.drawImage( img, 0, 0, 50, 50, null );
+        
+         }
         
         g2.drawRect(0, 0, 50,50);
         i = i +1;

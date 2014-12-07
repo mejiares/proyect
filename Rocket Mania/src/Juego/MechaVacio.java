@@ -128,4 +128,10 @@ public class MechaVacio extends Mecha {
 	public boolean getUnidoDown() {
 		return this.uAbajo;
 	}
+
+	@Override
+	public void anular() {
+		// TODO Auto-generated method stub
+		
+	}
 }

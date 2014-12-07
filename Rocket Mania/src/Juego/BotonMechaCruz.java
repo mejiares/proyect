@@ -12,9 +12,10 @@ public class BotonMechaCruz extends JButton {
 	int ancho = 50;
 	int i = 0;
 	boolean girar = false;
-	boolean amarillo = false;
-	boolean naranja = false;
-	boolean rojo = false;
+	private boolean amarillo = false;
+	private boolean naranja = false;
+	private boolean rojo = false;
+	boolean vacio = false;
 	ImageIcon icon = new ImageIcon("src/Imagenes/cruz.png");
 	ImageIcon icon2 = new ImageIcon("src/Imagenes/cruzA.png");
 	ImageIcon icon3 = new ImageIcon("src/Imagenes/cruzR.png");
@@ -26,6 +27,13 @@ public class BotonMechaCruz extends JButton {
 		setOpaque(false);
 		setContentAreaFilled(false);
 		setBorderPainted(false);
+	}
+	
+	public void setVacio(){
+		amarillo = false;
+		naranja = false;
+		rojo = false;
+		vacio = true;
 	}
 	
 	public void cambioAmarillo(){
@@ -67,20 +75,23 @@ public class BotonMechaCruz extends JButton {
 		Graphics2D g2 = (Graphics2D) g;  
         g2.rotate(miGiro, 25, 25);
         // Dibujado de la imagen
-      if(amarillo == true){
-        g2.drawImage( img2, 0, 0, 50, 50, null );
+        if(vacio == true){
+      	  
         }
-      else if(rojo ==true){
-        g2.drawImage( img3, 0, 0, 50, 50, null );
-  
+        else if(amarillo == true){
+          g2.drawImage( img2, 0, 0, 50, 50, null );
+          }
+        else if(rojo ==true){
+          g2.drawImage( img3, 0, 0, 50, 50, null );
+    
+          }
+        else if(naranja == true){
+      	  g2.drawImage( img4, 0, 0, 50, 50, null );
         }
-      else if(naranja == true){
-    	  g2.drawImage( img4, 0, 0, 50, 50, null );
-      }
-       else{
-        g2.drawImage( img, 0, 0, 50, 50, null );
-      
-       }
+         else{
+          g2.drawImage( img, 0, 0, 50, 50, null );
+        
+         }
         g2.drawRect(0, 0, 50,50);
         i = i +1;
         // System.out.println("Pasa2  " + i);          

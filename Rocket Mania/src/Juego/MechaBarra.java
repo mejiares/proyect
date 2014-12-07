@@ -27,6 +27,10 @@ public class MechaBarra extends Mecha {
 		uDerecha = false;
 		uArriba = false;
 		uAbajo = false;
+		
+		conectado = false;
+		revisado = false;
+		anulado = false;
 	}
 	
 	public void vuelta (){
@@ -66,6 +70,7 @@ public class MechaBarra extends Mecha {
 			this.b.cambioAmarillo();
 			if(conectaIzq==true){
 				this.b.cambioNaranja();
+				conectado = true;
 			}
 		}
 		else if (conectaIzq == false){
@@ -83,10 +88,11 @@ public class MechaBarra extends Mecha {
 		this.conectaIzq = b;
 		
 		if(conectaIzq == true){
-			System.out.println("pasa!!");
+			//System.out.println("pasa!!");
 			this.b.cambioRojo();
 			if(conectaDer==true){
 				this.b.cambioNaranja();
+				conectado = true;
 			}
 		}
 		else if (conectaDer == false){
@@ -161,6 +167,13 @@ public class MechaBarra extends Mecha {
 	@Override
 	public boolean getUnidoDown() {
 		return this.uAbajo;
+	}
+
+	@Override
+	public void anular() {
+		// TODO Auto-generated method stub
+		b.setVacio();
+		anulado = true;
 	}
 
 
