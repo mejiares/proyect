@@ -32,6 +32,7 @@ public class Ventana extends JFrame implements  MouseListener {
 	int cont =0;
 	int cohetes=0;
 	boolean reset = false;
+	boolean pasa = false;
 	private JButton[][] matrizBotones;
 	private Mecha[][] matrizMechas;
 
@@ -47,14 +48,14 @@ public class Ventana extends JFrame implements  MouseListener {
 				//if(random == 0)
 				Random r = new Random();
 				int ran = r.nextInt(10) ;
-				if (j<3 && j>0) {
+			/*	if (j<3 && j>0) {
 					MechaBarra m = new MechaBarra();
 					this.matrizMechas[i][j] = m;
 					this.matrizBotones[i][j] = m.getBoton();
 					matrizBotones[i][j].setBounds(i*50, j*50, 50, 50);
 
 				}
-				else if (ran  < 4) {
+				else*/ if (ran  < 4) {
 					MechaBarra m = new MechaBarra();
 					this.matrizMechas[i][j] = m;
 					this.matrizBotones[i][j] = m.getBoton();
@@ -391,14 +392,14 @@ public class Ventana extends JFrame implements  MouseListener {
 		}
 	}
 	
-	public void borrarMechas(){
-		
+	public void borrarMechas() throws InterruptedException{
+		Thread.sleep( 700 );
 		for (int j = 0; j < this.dimension; j++){
 			if(j>0 &&j<dimension-1){
 				
 				if(matrizMechas[8][j].conectado==true){
-					if(cont>50){cont = 0;}
-					if(cont<51){cont = cont + 1;}
+					//if(cont>50){cont = 0;}
+					//if(cont<51){cont = cont + 1;}
 					if(matrizMechas[8][j].revisado==false){
 						cohetes = cohetes +1;
 						matrizMechas[8][j].revisado=true;
@@ -409,7 +410,6 @@ public class Ventana extends JFrame implements  MouseListener {
 		}
 		//System.out.println(cont);
 		//Si el boton esta naranja le pone su boolean anulado a true y esto borra la imagen y lo prepara para su eliminación
-		if(cont >= 50){
 			//System.out.println(cont);
 			for (int i = 0; i < this.dimension; i++){
 				for (int j = 0; j < this.dimension; j++){
@@ -422,7 +422,7 @@ public class Ventana extends JFrame implements  MouseListener {
 					}
 				}
 			}
-		}
+		
 		
 	}
 	
@@ -444,65 +444,99 @@ public class Ventana extends JFrame implements  MouseListener {
 		matrizBotones[i][j].setBounds(i*50, j*50, 50, 50);
 		matrizBotones[i][j].addMouseListener(this);
 		w.add(matrizBotones[i][j]);
-		//System.out.println("LISTENER" + matrizBotones[i][j].getMouseListeners());
+		//System.out.println(ran);
 		
 	}
 	
-	public void rellenar(){
+	public void rellenar() throws InterruptedException{
 		int cont2 = 0;
 		//Aqui busca todas aquellasmechas que tienen el boolean anulado en true y pone la mache y el botoón de es casilla en null
 		for (int i = 0; i < this.dimension; i++){
 			for (int j = 0; j < this.dimension; j++){
 				if(j<dimension-1){
-					//matrizBotones[i][j].repaint();
 					if(matrizMechas[i][j].anulado==true){
 						matrizMechas[i][j] = null;
-						//matrizBotones[i][j].removeMouseListener(this);
-						matrizBotones[i][j] = null;
-						
 					}
 					
 				}
 			}
 		}
-		do{
+		int p =0;
+		boolean hay = true;
+		while(p<9){
 			
-			//revisa para cada casilla si la inferior está a null y si es así cambian lugares de tal manera que las null van subiendo hasta arriba
-			//cuando un boton de la primera fila es null inserta uno nuevo 
-			for (int j = 0; j < this.dimension; j++){
-				for (int i = 0; i < this.dimension; i++){
-					
-					if(j<dimension-1){
-						if(j==0 && matrizMechas[i][j] == null){
-							
-							crearBoton(i,0);
-							//reset = true;
+			p=p+1;
+			for(int z=0; z<5; z++){
+				for(int i=1; i<9; i++){
+					boolean caida = false;
+					hay = false;
+					for(int j=8; j>-1; j--){
+						if(j<8 && matrizMechas[i][j+1]==null){
+							pasa=true;
+							caida = true;
+							hay = true;
 						}
-						if(matrizMechas[i][j+1] == null){
-							matrizMechas[i][j+1] = matrizMechas[i][j];
-							matrizBotones[i][j+1] = matrizMechas[i][j].getBoton();
-								//matrizBotones[i][j+1].addMouseListener(this);
-							matrizBotones[i][j+1].setBounds(i*50, (j+1)*50, 50, 50);
-							//matrizBotones[i][j+1].removeMouseListener(this);
-								
-							matrizMechas[i][j] = null;
-							//matrizBotones[i][j].addMouseListener(this);
-								//matrizBotones[i][j].removeMouseListener(this);
-							matrizBotones[i][j] = null;
+						if(matrizMechas[i][j]!=null &&caida==true){
+							int pixels = matrizBotones[i][j].getY();
+							
+							matrizBotones[i][j].setBounds(i*50, pixels+10, 50, 50);
+							Thread.sleep(1);
+							//System.out.println(matrizBotones[i][j].getX()+"  "+matrizBotones[i][j].getY());
 							w.repaint();
-							//matrizBotones[i][j].repaint();
-							//matrizBotones[i][j+1].repaint();
-							/*
-							 * 
-							 */
-							
-							}
 						}
+						
 					}
 				}
-			cont2 = cont2 + 1;
-		}while(cont2<9);
-		cont2 = 0;
+			}
+			
+			//System.out.println("pasa "+ p);
+			for(int i=1; i<9; i++){
+				boolean caida = false;
+				for(int j=8; j>-1; j--){
+					if(j<8 && matrizMechas[i][j+1]==null){
+						caida = true;
+					}
+					if(matrizMechas[i][j]!=null &&caida==true){
+						matrizMechas[i][j+1] = matrizMechas[i][j];
+						matrizBotones[i][j+1] = matrizMechas[i][j].getBoton();
+						matrizMechas[i][j] = null;
+						
+					}
+					if(j==0&& caida==true){
+						crearBoton(i,0);
+					}
+					
+				}
+			}
+		
+		}
+		if(pasa==true){
+			w.removeAll(); 
+			for(int i = 0; i<dimension; i++){
+				for(int j=0; j<dimension; j++){
+					w.add(matrizBotones[i][j]);
+				}
+			}
+			borrarConecta();
+			fuente();
+			fuenteRoja();
+			revIzquierda();
+			revArriba();
+			revAbajo();
+			revDerecha();
+			int has = 0;
+			do {
+				revConectaDer();
+				revConectaIzq();
+				
+				has = has + 1;
+				//System.out.println(has);
+			} while(has < 16);
+			has = 0;
+			w.repaint();
+			pasa=false;
+		}
+	
 		
 	}
 	
@@ -510,27 +544,9 @@ public class Ventana extends JFrame implements  MouseListener {
 		
 		
 		while(true){
-			Thread.sleep( 20 );
-			/*cont = cont +1;
-			if(cont ==100){System.out.println("4 segs");
-			cont = 0;}*/
+			
 			borrarMechas();
 			rellenar();
-			
-			/*if(reset == true){
-				int pasa=0;
-				while(pasa<20){
-					for (int i = 0; i < this.dimension; i++){
-						for (int j = 0; j < this.dimension; j++){
-							matrizBotones[i][j].removeMouseListener(this);
-							matrizBotones[i][j].addMouseListener(this);
-						}
-					}
-					pasa= pasa+1;
-				}
-				reset = false;
-				pasa= 0;
-			}*/
 		
 		}
 	}
