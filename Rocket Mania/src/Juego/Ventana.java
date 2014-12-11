@@ -33,6 +33,7 @@ public class Ventana extends JFrame implements  MouseListener {
 	int cohetes=0;
 	boolean reset = false;
 	boolean pasa = false;
+	boolean listo = true;
 	private JButton[][] matrizBotones;
 	private Mecha[][] matrizMechas;
 
@@ -402,6 +403,7 @@ public class Ventana extends JFrame implements  MouseListener {
 					//if(cont<51){cont = cont + 1;}
 					if(matrizMechas[8][j].revisado==false){
 						cohetes = cohetes +1;
+						listo = false;
 						matrizMechas[8][j].revisado=true;
 						System.out.println("Cohetes: "+cohetes);
 					}
@@ -456,6 +458,7 @@ public class Ventana extends JFrame implements  MouseListener {
 				if(j<dimension-1){
 					if(matrizMechas[i][j].anulado==true){
 						matrizMechas[i][j] = null;
+						
 					}
 					
 				}
@@ -535,6 +538,7 @@ public class Ventana extends JFrame implements  MouseListener {
 			has = 0;
 			w.repaint();
 			pasa=false;
+			listo = true;
 		}
 	
 		
@@ -551,65 +555,100 @@ public class Ventana extends JFrame implements  MouseListener {
 		}
 	}
 	
-	
+	public void vueltas(int i, int j) throws InterruptedException{
+		int pass = 0;
+		listo = false;
+		while(pass<45){
+			
+			matrizMechas[i][j].giro();
+			matrizBotones[i][j].repaint();
+			pass = pass +1;
+			Thread.sleep(5);
+		}
+		System.out.println("Aquí");
+		matrizMechas[i][j].vuelta();
+		if(i==1 && j>0 && j<dimension-1){
+			//System.out.println("Paso 1");
+			if(matrizMechas[i][j].iz()==true){
+				//	System.out.println("Paso 2");
+				matrizMechas[i][j].setConectaDer(true);
+			}
+			else{
+				matrizMechas[i][j].setConectaDer(false);
+			}
+		}
+		
+		if(i==dimension-2  && j<dimension-1){
+			//System.out.println("Paso 1");
+			if(matrizMechas[i][j].der()==true){
+				//	System.out.println("Paso 2");
+				matrizMechas[i][j].setConectaIzq(true);
+			}
+			else{
+				matrizMechas[i][j].setConectaIzq(false);
+			}
+		}
+		revIzquierda();
+		revArriba();
+		revAbajo();
+		revDerecha();
+		int has = 0;
+		do {
+			revConectaDer();
+			revConectaIzq();
+			
+			has = has + 1;
+			//System.out.println(has);
+		} while(has < 16);
+		has = 0;
+		listo = true;
+		w.repaint();
+	}
 
+		private int ti, tj;
 	@Override
 	public void mouseClicked(java.awt.event.MouseEvent e) {
 
 		for (int i = 0; i < this.dimension; i++){
 			for (int j = 0; j < this.dimension; j++){
 				if(matrizBotones[i][j]!=null){
-					if(e.getSource()== matrizBotones[i][j]) {
+					if(e.getSource()== matrizBotones[i][j]&&listo==true) {
+						ti = i;
+						tj = j;
 						System.out.println("LISTENER "+i+"  "+j);
 						borrarConecta();
 						fuente();
 						fuenteRoja();
-						matrizMechas[i][j].giro();
-						matrizMechas[i][j].vuelta();
-						//System.out.println( matrizMechas[i][j].iz());
-	
-						if(i==1 && j>0 && j<dimension-1){
-							//System.out.println("Paso 1");
-							if(matrizMechas[i][j].iz()==true){
-								//	System.out.println("Paso 2");
-								matrizMechas[i][j].setConectaDer(true);
-							}
-							else{
-								matrizMechas[i][j].setConectaDer(false);
-							}
-						}
-						
-						if(i==dimension-2  && j<dimension-1){
-							//System.out.println("Paso 1");
-							if(matrizMechas[i][j].der()==true){
-								//	System.out.println("Paso 2");
-								matrizMechas[i][j].setConectaIzq(true);
-							}
-							else{
-								matrizMechas[i][j].setConectaIzq(false);
-							}
-						}
-	
-						revIzquierda();
-						revArriba();
-						revAbajo();
-						revDerecha();
-						int has = 0;
-						do {
-							revConectaDer();
-							revConectaIzq();
+						//matrizMechas[i][j].giro();
+						//listo = false;
 							
-							has = has + 1;
-							//System.out.println(has);
-						} while(has < 16);
-						has = 0;
+						//System.out.println(i+"  "+j);
+						System.out.println(listo);
+						//System.out.println( matrizMechas[i][j].iz());
+						(new Thread() {
+							@Override
+							public void run() {
+								try {
+									System.out.println(ti+"  "+tj);
+									vueltas(ti,tj);
+									//listo = false;
+									//System.out.println(i+"  "+j);
+								} catch (InterruptedException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
+							}
+						}).start();
+	
+						
+						
 						//System.out.println(matrizMechas[i][j].down());
 						//System.out.println("Empieza");
-						System.out.println("iz "+matrizMechas[i][j].getUnidoIz());
-						System.out.println("der "+matrizMechas[i][j].getUnidoDer());
-						System.out.println("ab "+matrizMechas[i][j].getUnidoDown());
-						System.out.println("ar "+matrizMechas[i][j].getUnidoUp());
-						w.repaint();
+						//System.out.println("iz "+matrizMechas[i][j].getUnidoIz());
+						//System.out.println("der "+matrizMechas[i][j].getUnidoDer());
+						//System.out.println("ab "+matrizMechas[i][j].getUnidoDown());
+						//System.out.println("ar "+matrizMechas[i][j].getUnidoUp());
+						//w.repaint();
 						
 					}
 				}

@@ -63,7 +63,7 @@ public class BotonMechaCruz extends JButton {
 	public void gira() {
 		//miGiro = 90/180*Math.PI;
 		//miGiro = -miGiro;  
-		miGiro = miGiro + Math.PI/2; 
+		miGiro = miGiro + Math.PI/(2*45); 
 		System.out.println("Boton Cruz gira:  " + miGiro);
 	}
 	

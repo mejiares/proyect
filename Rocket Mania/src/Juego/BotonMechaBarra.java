@@ -64,7 +64,7 @@ public class BotonMechaBarra extends JButton {
 		
 		//miGiro = -miGiro;  
 		
-		miGiro = miGiro + Math.PI/2; 
+		miGiro = miGiro + Math.PI/(2*45); 
 		
 		//repaint();
 		System.out.println("Boton barra gira:  " + miGiro);
@@ -80,7 +80,7 @@ public class BotonMechaBarra extends JButton {
         // Dibujado de la imagen
       if(vacio == true){
     	  
-      }
+      																																													}
       else if(amarillo == true){
         g2.drawImage( img2, 0, 0, 50, 50, null );
         }
