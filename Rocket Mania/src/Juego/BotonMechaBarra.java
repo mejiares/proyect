@@ -17,6 +17,7 @@ public class BotonMechaBarra extends JButton {
 	boolean naranja = false;
 	boolean rojo = false;
 	boolean vacio= false;
+	private String monedas = "";
 	ImageIcon icon = new ImageIcon("src/Imagenes/barra.png");
 	ImageIcon icon2 = new ImageIcon("src/Imagenes/barraA.png");
 	ImageIcon icon3 = new ImageIcon("src/Imagenes/barraR.png");
@@ -59,6 +60,24 @@ public class BotonMechaBarra extends JButton {
 		rojo = true;
 	}
 	
+	public void setMoneda(int val){
+		if(val == 1){
+			monedas = "1";
+		}
+		else if(val == 2){
+			monedas = "2";
+		}
+		else if(val == 5){
+			monedas = "5";
+		}
+		else if(val == 10){
+			monedas = "10";
+		}
+	}
+	public void agarrada(){
+		monedas = "";
+	}
+	
 	public void gira() {
 		//miGiro = 90/180*Math.PI;
 		
@@ -95,6 +114,7 @@ public class BotonMechaBarra extends JButton {
         g2.drawImage( img, 0, 0, 50, 50, null );
       
        }
+      g2.drawString(monedas, 25, 30);
                
         //este solo se usa con la imagen que solo es una barra, sin fondo
         //g2.drawImage( img, 0, 20, 50, 10, null );
