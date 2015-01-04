@@ -31,6 +31,8 @@ public class MechaBarra extends Mecha {
 		conectado = false;
 		revisado = false;
 		anulado = false;
+		
+		usado = false;
 	}
 	
 	public void vuelta (){
@@ -174,6 +176,25 @@ public class MechaBarra extends Mecha {
 		// TODO Auto-generated method stub
 		b.setVacio();
 		anulado = true;
+	}
+
+	@Override
+	public void moneda(int val) {
+		// TODO Auto-generated method stub
+		coin = val;
+		b.setMoneda(coin);
+		usado = true;
+		
+	}
+
+	@Override
+	public int cogida() {
+		// TODO Auto-generated method stub
+		usado = false;
+		b.agarrada();
+		int dev = coin;
+		coin = 0;
+		return dev;
 	}
 
 

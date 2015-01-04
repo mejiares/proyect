@@ -63,7 +63,7 @@ public class BotonMechaT extends JButton {
 		//miGiro = 90/180*Math.PI;
 		//miGiro = -miGiro;  
 		
-		miGiro = miGiro + Math.PI/2; 
+		miGiro = miGiro + Math.PI/(2*45); 
 		
 		//repaint();
 		System.out.println("Boton T gira:  " + miGiro);

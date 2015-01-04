@@ -26,6 +26,8 @@ public class MechaL extends Mecha {
 		conectado = false;
 		revisado = false;
 		anulado = false;
+		
+		usado = true;
 	}
 	
 	public void vuelta (){
@@ -177,5 +179,17 @@ public class MechaL extends Mecha {
 		// TODO Auto-generated method stub
 		b.setVacio();
 		anulado = true;
+	}
+
+	@Override
+	public void moneda(int val) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int cogida() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

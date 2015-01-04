@@ -7,9 +7,10 @@ import javax.swing.JButton;
 public abstract class Mecha {
 	protected int giro = 1;
 	protected int pos = 0;
+	protected int coin =0;
 	protected boolean izquierda, derecha, arriba, abajo;
 	protected boolean uIzquierda, uDerecha, uArriba, uAbajo;
-	boolean conectado, revisado, anulado;
+	boolean conectado, revisado, anulado, usado;
 	
 	/*
 	public Mecha() {
@@ -24,6 +25,8 @@ public abstract class Mecha {
 	
 	public abstract JButton getBoton();
 	public abstract void giro();
+	public abstract void moneda(int val);
+	public abstract int  cogida(); 
 	public abstract void anular();
 	public abstract void vuelta();
 	public abstract boolean iz();
