@@ -183,8 +183,7 @@ public class MechaBarra extends Mecha {
 		// TODO Auto-generated method stub
 		coin = val;
 		b.setMoneda(coin);
-		usado = true;
-		
+		usado = true;	
 	}
 
 	@Override

@@ -1,6 +1,8 @@
 package Juego;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -12,19 +14,30 @@ import java.util.Random;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 
 import org.w3c.dom.events.MouseEvent;
 
 /** Clase principal del juego RocketMania - Prog III
  * Ventana principal del juego.
  * @author David Mejía, Aitor Delgado, uncal Fdez. de Casadevante
- * @version 1.7
+ * @version 1.4
  * Facultad de Ingeniería - Universidad de Deusto (2014)
  */
 
 public class Ventana extends JFrame implements  MouseListener {
+	
+	private static final long serialVersionUID = -1728805850944908776L;
+	static String nombre = "Jugador 1";
+	//private static JTextField txtJugador;
+	
 	JPanel w = new JPanel();
+	JFrame ni = new JFrame();
+	JLabel mensaje = new JLabel();
+	JButton continuar = new JButton("Aceptar");
 	ImageIcon ama = new ImageIcon("src/Imagenes/barraA.png");
 	int dimension = 10;
 	int y = 0;
@@ -32,14 +45,23 @@ public class Ventana extends JFrame implements  MouseListener {
 	int cont =0;
 	int cohetes=0;
 	int monedas = 0;
+	int objetivo = 10;
+	int nivel = 1;
+	double time = 130000;
+	boolean estado = false;
 	boolean reset = false;
 	boolean pasa = false;
 	boolean listo = true;
+	boolean aceptar = false;
+	boolean cronometro = true;
 	private JButton[][] matrizBotones;
 	private Mecha[][] matrizMechas;
 
 	public Ventana(){
-		setSize(50*dimension,50*dimension);
+		setSize(51*dimension,60*dimension);
+		setVisible(false);
+		setLocationRelativeTo(null);
+		setBackground(Color.BLACK);
 		//w.setLayout(new GridLayout(dimension, dimension));
 		w.setLayout(null);
 		add(w);
@@ -120,13 +142,125 @@ public class Ventana extends JFrame implements  MouseListener {
 					matrizBotones[i][j].setVisible(false);
 				}
 			}
-		} 
+		}
+		ni.add(mensaje, BorderLayout.NORTH);
+		ni.add(continuar, BorderLayout.SOUTH);
+		ni.setVisible(false);
+		continuar.addActionListener( new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(estado == false){
+					System.out.println("Puntuación: ");
+					System.exit(ABORT);
+				}
+				else{
+					time = 130000;
+					objetivo = 0;
+					nivel = nivel + 1;
+					objetivo = 9 + nivel;
+					cronometro = true;
+					tiempo();
+					ni.setVisible(false);
+					setVisible(true);
+				}
+				
+			}
+			 
+		});
 	}
 	
 	public static void main(String[] args) throws InterruptedException {
-		boolean comienzo = false;
 		Ventana v = new Ventana();
-		v.setVisible(true);
+		portada(v);
+		empezar(v);
+		do{
+			
+		}while(v.aceptar == false);
+		if(v.aceptar == true){
+				v.tiempo();
+				v.ciclo();
+				
+		}
+	}
+	
+	public static void portada(Ventana v){
+		
+		JFrame por = new JFrame();
+		
+		por.setLayout(null);
+		
+		JPanel Panel0 = new JPanel();		
+		por.getContentPane().setLayout(null);
+		Panel0.setBorder(new EmptyBorder(5, 5, 5, 5));
+		por.add(Panel0);	
+		por.getContentPane().setBackground(Color.YELLOW);
+		
+		por.setVisible(true);
+		por.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		por.setSize(460, 500);
+	//	por.setResizable(false);
+		por.setLocationRelativeTo(null);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setBounds(0, 0, 460, 215);
+		lblNewLabel.setIcon(new ImageIcon("src/Imagenes/portada.jpg"));
+		por.getContentPane().add(lblNewLabel);
+		
+		JLabel lblNombre = new JLabel("Nombre");
+		lblNombre.setBounds(84, 250, 89, 34);
+		lblNombre.setForeground(Color.BLACK);
+		lblNombre.setFont(new Font("Cambria", Font.BOLD, 18));
+		por.getContentPane().add(lblNombre);
+		
+		JTextField txtJugador = new JTextField();
+		txtJugador.setForeground(Color.BLACK);
+		txtJugador.setBackground(Color.WHITE);
+		
+		txtJugador.setText(getNombre());
+		txtJugador.setBounds(270, 250, 142, 34);
+		por.getContentPane().add(txtJugador);
+		txtJugador.setFont(new Font("Cambria", Font.BOLD, 18));
+		txtJugador.setColumns(10);
+						
+		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnAceptar.setBounds(90, 330, 113, 39);
+		btnAceptar.addActionListener( new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				por.setVisible(false);
+				v.setVisible(true);
+				v.aceptar = true;			
+			}
+		});
+		por.getContentPane().add(btnAceptar);	
+		
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txtJugador.setText("");
+			}
+		});
+		btnCancelar.setBounds(270, 330, 113, 39);
+		por.getContentPane().add(btnCancelar);
+		
+		JButton btnExit = new JButton("");
+		btnExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.exit(ABORT);			
+			}
+		});
+		btnExit.setBounds(370, 390, 70, 70);
+		btnExit.setIcon(new ImageIcon("src/Imagenes/exit.png"));
+		por.getContentPane().add(btnExit);
+	}
+
+	//Devuelve el valor de nombre
+	public static String getNombre () {
+		return nombre;
+	}
+	
+	public static void empezar(Ventana v){
+		boolean comienzo = false;
 		v.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		if(comienzo == false){
 			v.revIzquierda();
@@ -144,8 +278,41 @@ public class Ventana extends JFrame implements  MouseListener {
 			}
 			while(has < 16);
 			comienzo = true;
-			v.ciclo();
 		}
+	}
+	
+	public void tiempo(){
+		(new Thread() {
+			@Override
+			public void run() {
+				while(cronometro==true){
+					try {
+						Thread.sleep(1);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					time = time - 1;
+					if(time == 0){
+						
+						cronometro = false;
+						estado = false;
+						mensaje.setText("Ha perdido");
+						setVisible(false);
+						ni.setVisible(true);
+					}
+					if(objetivo <= 0){
+						cronometro = false;
+						estado = true;
+						mensaje.setText("Ha pasado de nivel");
+						setVisible(false);
+						ni.setVisible(true);
+					}
+				}
+			}
+		}).start();
+
 	}
 	
 	public void revArriba(){
@@ -410,6 +577,7 @@ public class Ventana extends JFrame implements  MouseListener {
 					//if(cont<51){cont = cont + 1;}
 					if(matrizMechas[8][j].revisado==false){
 						cohetes = cohetes +1;
+						objetivo = objetivo -1;
 						listo = false;
 						matrizMechas[8][j].revisado=true;
 						System.out.println("Cohetes: "+cohetes);
@@ -433,7 +601,7 @@ public class Ventana extends JFrame implements  MouseListener {
 				}
 			}
 		
-		
+		// un while con el número de imagenes que consiste la explosión he irlos cambiando en aquellos anulados, en el boton 
 	}
 	
 	public void crearBoton(int i, int j){
@@ -460,7 +628,7 @@ public class Ventana extends JFrame implements  MouseListener {
 	
 	public void rellenar() throws InterruptedException{
 		int cont2 = 0;
-		//Aqui busca todas aquellasmechas que tienen el boolean anulado en true y pone la mache y el botoón de es casilla en null
+		//Aqui busca todas aquellas mechas que tienen el boolean anulado en true y pone la mecha y el botón de esa casilla en null
 		for (int i = 1; i < this.dimension-1; i++){
 			for (int j = 0; j < this.dimension; j++){
 				if(j<dimension-1){
@@ -765,8 +933,7 @@ public class Ventana extends JFrame implements  MouseListener {
 						//System.out.println("der "+matrizMechas[i][j].getUnidoDer());
 						//System.out.println("ab "+matrizMechas[i][j].getUnidoDown());
 						//System.out.println("ar "+matrizMechas[i][j].getUnidoUp());
-						//w.repaint();
-						
+						//w.repaint();					
 					}
 				}
 			}

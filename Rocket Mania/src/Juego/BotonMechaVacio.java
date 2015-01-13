@@ -73,7 +73,7 @@ public class BotonMechaVacio extends JButton {
         g2.drawImage( img, 0, 0, 50, 50, null );
         
        }
-        g2.drawRect(0, 0, 50,50);
+        //g2.drawRect(0, 0, 50,50);
         i = i +1;
         // System.out.println("Pasa2  " + i);          
         

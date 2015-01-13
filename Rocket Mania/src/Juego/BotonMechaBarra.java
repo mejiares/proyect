@@ -118,7 +118,7 @@ public class BotonMechaBarra extends JButton {
                
         //este solo se usa con la imagen que solo es una barra, sin fondo
         //g2.drawImage( img, 0, 20, 50, 10, null );
-        g2.drawRect(0, 0, 50,50);
+        //g2.drawRect(0, 0, 50,50);
         i = i +1;
       //  System.out.println("Pasa2  " + i);
    
