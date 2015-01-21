@@ -12,17 +12,6 @@ public abstract class Mecha {
 	protected boolean uIzquierda, uDerecha, uArriba, uAbajo;
 	boolean conectado, revisado, anulado, usado;
 	
-	/*
-	public Mecha() {
-			
-	}
-	
-	public Component getBoton() {
-		JButton vacio = new JButton();
-		return vacio;
-	}
-	*/
-	
 	public abstract JButton getBoton();
 	public abstract void giro();
 	public abstract void moneda(int val);

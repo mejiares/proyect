@@ -11,6 +11,7 @@ public class BotonMechaBarra extends JButton {
 	double miGiro = 0;
 	int alto = 50;
 	int ancho = 50;
+	int valor = 0;
 	int i = 0;
 	boolean girar = false;
 	boolean amarillo = false;
@@ -22,6 +23,11 @@ public class BotonMechaBarra extends JButton {
 	ImageIcon icon2 = new ImageIcon("src/Imagenes/barraA.png");
 	ImageIcon icon3 = new ImageIcon("src/Imagenes/barraR.png");
 	ImageIcon icon4 = new ImageIcon("src/Imagenes/barraN.png");
+	
+	ImageIcon icon5 = new ImageIcon("src/Imagenes/bronce.png");
+	ImageIcon icon6 = new ImageIcon("src/Imagenes/plata.png");
+	ImageIcon icon7 = new ImageIcon("src/Imagenes/oro.png");
+	ImageIcon icon8 = new ImageIcon("src/Imagenes/platino.png");
 	public BotonMechaBarra(){
 		
 		setIcon(icon);
@@ -61,21 +67,10 @@ public class BotonMechaBarra extends JButton {
 	}
 	
 	public void setMoneda(int val){
-		if(val == 1){
-			monedas = "1";
-		}
-		else if(val == 2){
-			monedas = "2";
-		}
-		else if(val == 5){
-			monedas = "5";
-		}
-		else if(val == 10){
-			monedas = "10";
-		}
+		valor = val;
 	}
 	public void agarrada(){
-		monedas = "";
+		valor = 0;
 	}
 	
 	public void gira() {
@@ -94,12 +89,16 @@ public class BotonMechaBarra extends JButton {
 		Image img2 = icon2.getImage() ;
 		Image img3 = icon3.getImage();
 		Image img4 = icon4.getImage();
+		Image img5 = icon5.getImage() ; 
+		Image img6 = icon6.getImage() ;
+		Image img7 = icon7.getImage();
+		Image img8 = icon8.getImage();
 		Graphics2D g2 = (Graphics2D) g;  
         g2.rotate(miGiro, 25, 25);
         // Dibujado de la imagen
       if(vacio == true){
     	  
-      																																													}
+      						}
       else if(amarillo == true){
         g2.drawImage( img2, 0, 0, 50, 50, null );
         }
@@ -114,13 +113,20 @@ public class BotonMechaBarra extends JButton {
         g2.drawImage( img, 0, 0, 50, 50, null );
       
        }
-      g2.drawString(monedas, 25, 30);
-               
-        //este solo se usa con la imagen que solo es una barra, sin fondo
-        //g2.drawImage( img, 0, 20, 50, 10, null );
-        //g2.drawRect(0, 0, 50,50);
+     if(valor == 1){
+    	  g2.drawImage( img5, 0, 0, 50, 50, null );
+		}
+		else if(valor == 2){
+			 g2.drawImage( img6, 0, 0, 50, 50, null );
+		}
+		else if(valor == 5){
+			 g2.drawImage( img7, 0, 0, 50, 50, null );
+		}
+		else if(valor == 10){
+			 g2.drawImage( img8, 0, 0, 50, 50, null );
+		}
+     
         i = i +1;
-      //  System.out.println("Pasa2  " + i);
    
 	}	
 }

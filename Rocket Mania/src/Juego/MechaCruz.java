@@ -27,7 +27,7 @@ public class MechaCruz extends Mecha {
 		revisado = false;
 		anulado = false;
 		
-		usado = true;
+		usado = false;
 	}
 	
 	public void vuelta (){
@@ -55,10 +55,14 @@ public class MechaCruz extends Mecha {
 				this.b.cambioNaranja();
 				conectado = true;
 			}
+			else{
+				conectado = false;
+			}
 		}
 		else if (conectaIzq == false){
 			this.b.cambioGris();
-		}	
+			conectado = false;
+		}
 	}
 
 	@Override
@@ -68,17 +72,23 @@ public class MechaCruz extends Mecha {
 	
 	@Override
 	public void setConectaIzq(boolean b) {
-		this.conectaIzq = b;
+this.conectaIzq = b;
+		
 		if(conectaIzq == true){
+			//System.out.println("pasa!!");
 			this.b.cambioRojo();
 			if(conectaDer==true){
 				this.b.cambioNaranja();
 				conectado = true;
 			}
+			else{
+				conectado = false;
+			}
 		}
 		else if (conectaDer == false){
 			this.b.cambioGris();
-		}	
+			conectado = false;
+		}
 	}
 
 	@Override
@@ -155,12 +165,18 @@ public class MechaCruz extends Mecha {
 	@Override
 	public void moneda(int val) {
 		// TODO Auto-generated method stub
-		
+		coin = val;
+		b.setMoneda(coin);
+		usado = true;	
 	}
 
 	@Override
 	public int cogida() {
 		// TODO Auto-generated method stub
-		return 0;
-	}	
+		usado = false;
+		b.agarrada();
+		int dev = coin;
+		coin = 0;
+		return dev;
+	}
 }

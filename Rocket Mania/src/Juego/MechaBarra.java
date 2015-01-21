@@ -74,9 +74,13 @@ public class MechaBarra extends Mecha {
 				this.b.cambioNaranja();
 				conectado = true;
 			}
+			else{
+				conectado = false;
+			}
 		}
 		else if (conectaIzq == false){
 			this.b.cambioGris();
+			conectado = false;
 		}
 	}
 
@@ -96,10 +100,15 @@ public class MechaBarra extends Mecha {
 				this.b.cambioNaranja();
 				conectado = true;
 			}
+			else{
+				conectado = false;
+			}
 		}
 		else if (conectaDer == false){
 			this.b.cambioGris();
+			conectado = false;
 		}
+		
 					
 	}
 	

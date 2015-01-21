@@ -27,7 +27,7 @@ public class MechaL extends Mecha {
 		revisado = false;
 		anulado = false;
 		
-		usado = true;
+		usado = false;
 	}
 	
 	public void vuelta (){
@@ -77,18 +77,20 @@ public class MechaL extends Mecha {
 	@Override
 	public void setConectaDer(boolean b) {
 		this.conectaDer = b;
-		//System.out.println("Paso 3");
 		if(conectaDer == true){
-		//	System.out.println("Paso 4");
 			this.b.cambioAmarillo();
 			if(conectaIzq==true){
 				this.b.cambioNaranja();
 				conectado = true;
 			}
+			else{
+				conectado = false;
+			}
 		}
 		else if (conectaIzq == false){
 			this.b.cambioGris();
-		}	
+			conectado = false;
+		}
 	}
 
 	@Override
@@ -98,17 +100,23 @@ public class MechaL extends Mecha {
 	
 	@Override
 	public void setConectaIzq(boolean b) {
-		this.conectaIzq = b;
+this.conectaIzq = b;
+		
 		if(conectaIzq == true){
+			//System.out.println("pasa!!");
 			this.b.cambioRojo();
 			if(conectaDer==true){
 				this.b.cambioNaranja();
 				conectado = true;
 			}
+			else{
+				conectado = false;
+			}
 		}
 		else if (conectaDer == false){
 			this.b.cambioGris();
-		}		
+			conectado = false;
+		}	
 	}
 
 	@Override
@@ -184,12 +192,18 @@ public class MechaL extends Mecha {
 	@Override
 	public void moneda(int val) {
 		// TODO Auto-generated method stub
-		
+		coin = val;
+		b.setMoneda(coin);
+		usado = true;	
 	}
 
 	@Override
 	public int cogida() {
 		// TODO Auto-generated method stub
-		return 0;
+		usado = false;
+		b.agarrada();
+		int dev = coin;
+		coin = 0;
+		return dev;
 	}
 }
